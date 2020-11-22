@@ -1,56 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="script.js"></script>
-    <title>adMado</title>
-    <link rel="shortcut icon" href="favicon.ico">
+{% extends layout.html %}
 
-</head>
-<body>
-
-    <header>
-        <img src= "logo.png" class = "logo">
-        <div id="menu">
-            <ul>
-            <li><a href="index.html" style = "text-decoration: underline;">Home</a></li>
-            <li><a href="concept.html">Concept</a></li>
-            <li><a href="service.html">Service</a></li>
-            <li><a href="aboutus.html">About us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            </ul> 
-        </div>
-        <a href = "https://twitter.com/adMado_gr"><img src = "instagramlogo.png" class = "facebook"></a>
-        <a href = "https://twitter.com/adMado_gr"><img src = "twitterlogo.png" class = "twitter"></a>
-
-        <small>© 2021 adMado</small>
-    </header>
-
-    <div class = "homepage">
-        <h1 id = adMado>adMado</h1>
-        <img src = "homeimage.jpg" class = "homeimage">
-        <p class = "hometext">adMadoは自動車広告のマッチングプラットフォームです。<br>
-            広告をより身近なものにしたいと考え<br>
-            街中を走る車が移動する広告媒体になる、新たな広告の価値を提案します。</p>
-
-            
-            <a class = "button" href="client.html">
-                <p class = "forclient">広告掲載を希望の方</p>
-            </a>
-           
-        
-
-    </div>
-
-
-
-
-</body>
-
-
-
-
-
-</html>
+{% block contents %}
+<div class = "homepage">
+    <h1 id = adMado>adMado</h1>
+    <img src = "{{ url_for('static', filename='imgs/homeimage.jpg') }}" class = "homeimage">
+    <p class = "hometext">adMadoは自動車広告のマッチングプラットフォームです。<br>
+        広告をより身近なものにしたいと考え<br>
+        街中を走る車が移動する広告媒体になる、新たな広告の価値を提案します。
+    </p>    
+    <a class = "button" href="client.html">
+      <p class = "forclient">広告掲載を希望の方</p>
+    </a>
+</div>
+{% endblock %}
 

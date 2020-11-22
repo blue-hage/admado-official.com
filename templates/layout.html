@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>adMado</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='imgs/favicon.ico') }}">
+  </head>
+
+  <body>
+      <header>
+          <img src= "{{ url_for('static', filename='imgs/logo.png') }}" class = "logo">
+          <div id="menu">
+              <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/concept">Concept</a></li>
+              <li><a href="/service">Service</a></li>
+              <li><a href="/aboutus">About us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              </ul> 
+          </div>
+          <a href = "https://twitter.com/adMado_gr"><img src = "{{ url_for('static', filename='imgs/instagramlogo.png') }}" class = "facebook"></a>
+          <a href = "https://twitter.com/adMado_gr"><img src = "{{ url_for('static', filename='imgs/twitterlogo.png') }}" class = "twitter"></a>
+
+          <small>© 2021 adMado</small>
+      </header>
+
+      {% block contents %}{% endblock %}
+      <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
