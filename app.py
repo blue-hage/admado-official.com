@@ -5,7 +5,7 @@ app.secret_key = "blublunomi_gomugomu"
 
 @app.route("/")
 def index():
-  return render_template("layout.html")
+  return render_template("index.html")
 
 @app.route("/concept")
 def concept():
