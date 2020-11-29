@@ -1,6 +1,63 @@
-{% extends "layout.html" %}
-{% block contents %}
-<div class = "aboutpage">
-    <div class = "background">
+{% extends "concept.html" %}
+{% block head %}メンバー{% endblock %}
+{% block content %}
+<div class="d-flex flex-column flex-sm-row">
+    <div class="container profiles">
+        <img src="{{ url_for('static', filename='imgs/') }}" width="200" height="200" class="rounded-circle d-block mx-auto mb-3">
+        <p class="text-light text-center">
+            CEO<br>
+            清田　龍之介
+        </p>
+        <ul class="list-group list-group-flush text-light text-center rounded">
+            <li class="list-group-item list-group-item-secondary">
+                
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="container profiles">
+        <img src="{{ url_for('static', filename='imgs/') }}" width="200" height="200" class="rounded-circle d-block mx-auto mb-3">
+        <p class="text-light text-center">
+            COO<br>
+            大橋　玄弥
+        </p>
+        <ul class="list-group list-group-flush text-light text-center rounded">
+            <li class="list-group-item list-group-item-secondary">
+                
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="container profiles">
+        <img src="{{ url_for('static', filename='imgs/blue.jpg') }}" width="200" height="200" class="rounded-circle d-block mx-auto mb-3">
+        <p class="text-light text-center">
+            CTO<br>
+            酒匂　真人
+        </p>
+        <ul class="list-group list-group-flush text-light text-center rounded">
+            <li class="list-group-item list-group-item-secondary">
+                福岡大学附属大濠高校卒
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+                立命館大学情報理工学部<br>情報システムグローバルコース所属
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+                個人でもWEBアプリ開発中<br>
+                （近々、リンク貼ります）
+            </li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
