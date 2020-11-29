@@ -1,9 +1,7 @@
-main{
-  height: 1000px;
-}
-
-div.container{
-  flex: 1;
+/* layout.html */
+html, body, main{
+  height: 100%;
+  width: 100%;
 }
 
 .back-image{
@@ -14,8 +12,24 @@ div.container{
 }
 
 .title{
-  display: inline-block;
   font-size: 3.5em;
-  width: 25%;
-  padding: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+/* for extended pages */
+main:not(.back-image){
+  height: auto;
+}
+
+.sub-title{
+  font-size: 1.75em;
+  padding-top: 3em;
+  padding-bottom: 2em;
+  font-weight: bold;
+}
+
+/* concept.html */
+.concept-ex{
+  margin-bottom: 5em;
 }

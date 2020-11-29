@@ -1,30 +1,28 @@
-{% extends "layout.html" %}
-{% block contents %}
-<div class = "contactpage">
-    <div class = "background">
-        <form action="/contact_page/try">
-            <legend>お問い合わせ</legend>
+{% extends "concept.html" %}
 
-            <div class="form-group">
-                <label for="name">名前</label>
-                <input id="name" type="text" name="name" class="form-control">
-            </div>
+{% block head %}お問い合わせ{% endblock %}
 
-            <div class="form-group">
-                <label for="email">メールアドレス</label>
-                <input id="email" type="email" name="email" class="form-control">
-                <small class="form-text text-muted">（個人情報保護系の説明）</small>
-            </div>
+{% block content %}
+<form action="/contact_page/try">
 
-            <div class="form-group">
-                <label for="contents">お問い合わせ内容</label>
-                <textarea id="contents" name="contents" rows="10" class="form-control"></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-outline-secondary">送信</button>
-        </form>
-
-        <p>多くの方から頂いた質問は、まとめてQ＆Aとして掲載する予定です。</p>
+    <div class="form-group">
+        <label class="text-light" for="name">名前</label>
+        <input id="name" type="text" name="name" class="form-control">
     </div>
-</div>
+
+    <div class="form-group">
+        <label class="text-light" for="email">メールアドレス</label>
+        <input id="email" type="email" name="email" class="form-control">
+        <small class="form-text">（個人情報保護系の説明）</small>
+    </div>
+
+    <div class="form-group">
+        <label class="text-light" for="contents">お問い合わせ内容</label>
+        <textarea id="contents" name="contents" rows="10" class="form-control"></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-outline-secondary">送信</button>
+</form>
+    
+<p class="text-light">多くの方から頂いた質問は、まとめてQ＆Aとして掲載する予定です。</p>
 {% endblock %}

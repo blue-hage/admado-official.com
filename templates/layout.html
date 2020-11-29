@@ -10,16 +10,16 @@
   </head>
   
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        <img src= "{{ url_for('static', filename='imgs/logo.png') }}" width="30" height="30">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="/">
+        <img src= "{{ url_for('static', filename='imgs/logo.png') }}" width="50" height="50">
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
@@ -37,25 +37,23 @@
             <a class="nav-link" href="/contact">Contact</a>
           </li>
         </ul>
-
-        <a href = "https://instagram.com/adMado_gr" class="navbar-brand">
+        <a href = "https://instagram.com/adMado_gr" class="navbar-brand mr-0 px-2">
           <img src = "{{ url_for('static', filename='imgs/instagramlogo.png') }}" width="30" height="30">
         </a>
-        <a href = "https://twitter.com/adMado_gr" class="navbar-brand">
+        <a href = "https://twitter.com/adMado_gr" class="navbar-brand mr-0 px-2">
           <img src = "{{ url_for('static', filename='imgs/twitterlogo.png') }}" width="30" height="30">
         </a>
       </div>
     </nav>
-    
-    <main class="back-image">
-      <h1 class="text-light title">adMado</h1>
-      {% block contents %}{% endblock %}
-    </main>
 
-    <footer class="bg-light">
+    {% block contents %}{% endblock %}
+
+    <footer class="bg-light text-center">
       <small>© 2021 adMado</small>
     </footer>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
 </html>
