@@ -6,7 +6,6 @@
     <h1 class="title">adMado</h1>
 
     <div class="flex-fill d-flex flex-column justify-content-around container">
-        {% block content %}
         <p>
             それは広告新時代の窓<br>
             <span class="font-weight-bold font-italic">「自動車広告のマッチングプラットフォーム」</span>
@@ -21,8 +20,9 @@
             <span class="font-italic font-weight-bold">「車に載せる広告」</span>を提案します。
         </p>
 
-        <a type="button" class="btn btn-secondary btn-lg mx-auto">広告掲載を希望の方</a>
-        {% endblock %}
+        <a class="mx-auto">
+            <button type="button" class="btn btn-secondary btn-lg rounded-pill">広告掲載を希望の方</button>
+        </a>
     </div>
     
 </main>
