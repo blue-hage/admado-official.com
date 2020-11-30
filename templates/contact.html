@@ -1,7 +1,37 @@
-{% extends "layout.html" %}
-{% block contents %}
-<div class = "contactpage">
-    <h1 id = adMado>adMado</h1>
-    <div class = "background">
+{% extends "concept.html" %}
+
+{% block head %}お問い合わせ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="/contact/try">
+    
+        <div class="form-group">
+            <label class="text-light" for="name">お名前</label>
+            <input id="name" type="text" name="name" class="form-control">
+        </div>
+    
+        <div class="form-group">
+            <label class="text-light" for="email">メールアドレス</label>
+            <input id="email" type="email" name="email" class="form-control">
+            <small class="form-text">
+                <a href="/policy" class="text-dark">
+                    プライバシーポリシーなどの規約はこちら
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-text-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm7.5 1.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 8a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </a>
+            </small>
+        </div>
+    
+        <div class="form-group">
+            <label class="text-light" for="contents">お問い合わせ内容</label>
+            <textarea id="contents" name="contents" rows="10" class="form-control"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-outline-secondary">送信</button>
+    </form>
+
+    <small class="text-light">*多くの方から頂いた質問は後ほどQ＆Aとして掲載予定</small>
 </div>
 {% endblock %}

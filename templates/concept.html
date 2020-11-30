@@ -1,30 +1,50 @@
-{% extends "layout.html" %}
+{% extends "index.html" %}
 {% block contents %}
-<div class = "conceptpage">
-    <h1 id = adMado>adMado</h1>
-    <div class = "background">
-        <p class = "concepttext">
-            皆さんは広告に対してどんな印象を持つでしょうか？<br><br><br>
+<main class="flex-fill d-flex flex-column bg-secondary text-light text-center pt-5 pb-5">
 
-            番組の間に挟まれるテレビCMや、駅で見る広告など<br>
-            多くの広告が生活の一部に溶け込む現代ですが<br>
-            人々の広告への興味は決して高いとは言えません。<br><br><br>
-            
-            そこで我々は、街中を走る車を<br>
-            移動する広告媒体にすることで広告に新たな価値を求め<br>
-            より身近に感じていただくきっかけになればと思っております。<br><br><br>
-            
-            adMadoなら今まで広告を出すことが難しかった<br>
-            個人や中小企業の方々も低価格での広告を掲載を実現できます。<br><br><br>
-            
-            また、ドライバーではない皆様も<br>
-            このサービスに参加していただけるよう<br>
-            すれ違った広告車を評価できるシステムを採用しております。<br><br><br>
-            
-            世界全体が落ち込む今だからこそ<br>
-            皆様の身近なところに新たなサービスを提供いたします。
-        </p>
-        <p class = "maintext">身近にもっとワクワクを</p>
-    </div>
-</div>
+    <h1 class = "sub-titles">{% block head %}#身近にもっとワクワクを{% endblock %}</h1>
+        
+    {% block content %}
+    <p class = "concept-ex">
+        広告に対してどんな印象を持っていますか？
+    </p>
+
+    <p class = "concept-ex">
+        「テレビCM」や「駅で見る広告」など<br>
+        多くの広告が生活の一部に溶け込む現代ですが<br>
+        どれだけの人に届いているでしょうか。
+    </p>
+        
+    <p class = "concept-ex">
+        そこで我々は、街中を走る車を<br>
+        「移動する広告媒体」とすることで<br><br>
+
+        <span class="font-italic font-weight-bold"> より多くの人へ、 更にはより身近な広告</span><br><br>
+
+        をお届け出来るものと考えます。
+    </p>
+
+    <p class = "concept-ex">
+        adMadoなら従来の広告では厳しかった<br><br>
+
+        <span class="font-weight-bold font-italic">個人や中小企業の方々も「低価格」</span><br><br>
+
+        での広告掲載も実現可能。
+    </p>
+
+    <p class = "concept-ex">
+        また、ドライバーや企業ではない皆様も<br><br>
+
+        <a href="/service" class="text-light font-italic" style="text-decoration: underline;">「広告車評価システム」</a><br><br>
+
+        により簡単に当サービスにご参加頂けます。
+    </p>
+
+    <p class = "concept-ex">
+        世界全体が落ち込む今だからこそ<br>
+        皆様の身近に新たなサービスを提供致します。
+    </p>
+    {% endblock %}
+    
+</main>
 {% endblock %}

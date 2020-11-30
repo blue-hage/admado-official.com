@@ -1,41 +1,127 @@
-{% extends "layout.html" %}
-{% block contents %}
-<div class = "servicepage">
-    <h1 id = adMado>adMado</h1>
-    <div class = "background">
-        <p class = "servicetext">
-            adMadoでは、皆様からの評価システムを採用しております。<br>
-            我々のアプリケーション上での位置情報システムを利用し<br>
-            広告を掲載している車両とすれ違うと初めてその車に対して評価を行えます。<br>
-            この評価システムは、広告掲示に対する不正を防止するためでもありながら<br>
-            皆様の広告への注目度向上にもつながると考えています。<br>
-            皆様からいただいた評価は、１つの評価ごとに感謝料をお支払いします。<br>
-        </p>
+{% extends "concept.html" %}
 
-        <p class = "flowcharttext">
-            利用までの流れ<br>
-            (ドライバー)
-            </p>
-            <div class = "flowchart"></div>
-            <p class ="flow">会員登録</p>
-            <div class = "arrow"></div>
-            <div class = "flowchart2"></div>
-            <p class ="flow2">広告を選ぶ</p>
-            <div class = "arrow2"></div>
-            <div class = "flowchart3"></div>
-            <p class ="flow3">広告貼り付け</p>
-            <div class = "arrow3"></div>
-            <div class = "flowchart4"></div>
-            <p class ="flow4">撮影 ＆ 運転</p>
-            <div class = "arrow4"></div>
-            <div class = "flowchart5"></div>
-            <p class ="flow5">入金</p>
+{% block head %}サービス内容{% endblock %}
 
-        <p class = "notice">
-            ＊こちらで説明している流れはすべてスマートフォンアプリ内でのみ行えます。<br>
-            ＊評価システムは、ドライバーだけでなく皆様の位置情報も使用させていただく必要がございます。<br>
-            ＊１つの評価に対する感謝料は、変動する可能性がございます。
+{% block content %}
+<small>*クライアント様を除くサービスはスマートフォンアプリ内のみ</small>
+<div class="accordion" id="services">
+  <div class="card">
+    <div class="card-header" id="headingGeneral">
+      <h2 class="mb-0">
+        <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#general" aria-expanded="true" aria-controls="general">
+          一般ユーザーの方々
+        </button>
+      </h2>
+    </div>
+
+    <div id="general" class="collapse show" aria-labelledby="headingGeneral" data-parent="#services">
+      <div class="card-body bg-secondary">
+
+        <h2 class="mb-5">利用までの流れ</h2>
+
+        <div class="d-flex flex-column flex-sm-row mb-5">
+          <div class="border border-light rounded-pill">会員登録</div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill">評価</div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill">入金</div>
+        </div>
+
+        <div class="container">
+          <p>
+            adMadoでは、皆様からの評価システムを採用しております。我々のアプリケーション上での位置情報システムを利用し広告を掲載している車両と一定の距離内ですれ違うと初めてその車に対して評価を行えます。この評価システムは、広告掲示に対する不正を防止するためでもありながら皆様の広告への注目度向上にも繋がるシステムであると考えております。皆様から頂いた評価は、1評価ごとに感謝料をお支払いします。
+          </p>
+
+          <small>*評価システム上、一般ユーザーの皆様の位置情報も使用させていただく必要がございます。</small>
+          <small>*1つの評価に対する感謝料は、変動する可能性がございます。</small>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingDriver">
+      <h2 class="mb-0">
+        <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#driver" aria-expanded="false" aria-controls="driver">
+          ドライバーの皆様
+        </button>
+      </h2>
+    </div>
+
+    <div id="driver" class="collapse" aria-labelledby="headingDriver" data-parent="#services">
+      <div class="card-body bg-secondary">
+
+        <h2 class="mb-5">利用までの流れ</h2>
+
+        <div class="d-flex flex-column flex-sm-row mb-5">
+          <div class="border border-light rounded-pill">会員登録</div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill">広告を選ぶ</div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill">広告貼り付け</div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill">撮影＆運転</div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill">入金</div>
+        </div>
+
+        <p>
+          ドライバーの説明
         </p>
-    </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingClient">
+      <h2 class="mb-0">
+        <button class="btn btn-secondary btn-block" type="button" data-toggle="collapse" data-target="#client" aria-expanded="false" aria-controls="client">
+          クライアントの皆様
+        </button>
+      </h2>
+    </div>
+
+    <div id="client" class="collapse" aria-labelledby="headingClient" data-parent="#services">
+      <div class="card-body bg-secondary">
+
+        <h2 class="mb-5">利用までの流れ</h2>
+        <div class="d-flex flex-column flex-sm-row mb-5">
+          <div class="border border-light rounded-pill">当サイトより申込<br>（*デザインファイル付き）</div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill"></div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill"></div>
+          <span class="d-sm-none">&or;</span><span class="d-none d-sm-inline">&gt;</span>
+          <div class="border border-light rounded-pill"></div>
+        </div>
+
+        <div class="container">
+          <p>adMadoでの広告掲載に興味を持っていただきありがとうございます。<br>
+            我々は一つ一つの企業様や広告に対して全力で向き合い、最高のサービス提供をお約束します。
+          </p>
+  
+          <p>
+            我々の広告費制度は<br>
+            契約費（保証）&nbsp;＋&nbsp;広告費の金額&nbsp;＋&nbsp;評価数&nbsp;による金額となっております。<br>
+            広告費に関しましては各クライアント様との話し合いにて決定させていただきます。<br>
+            また、様々な条件を追加することも可能です。<br><br>
+          </p>
+  
+          <ul>
+            <li>ゴールド免許のみ</li>
+            <li>免許取得からの期間</li>
+            <li>台数</li>
+            <li>エリア</li>
+            <li>大きさ</li>
+          </ul>
+  
+          <p>
+            クライアントの皆様からは、出来高によって広告費をいただくシステムとなっております。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
