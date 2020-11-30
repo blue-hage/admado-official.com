@@ -6,6 +6,7 @@ import os
 app = Flask(__name__)
 app.secret_key = "blublunomi_gomugomu"
 
+# pages
 @app.route("/")
 def index_page():
   return render_template("index.html")
@@ -30,6 +31,19 @@ def contact_page():
 def client_page():
   return render_template("client.html")
 
+@app.route("/policy_user")
+def policy_user():
+  return render_template("policy_user.html")
+
+@app.route("/policy_pri")
+def policy_pri():
+  return render_template("policy_pri.html")
+
+@app.route("/policy_ad")
+def policy_ad():
+  return render_template("policy_ad.html")
+
+# contact
 @app.route("/contact/try")
 def contact_try():
   return
