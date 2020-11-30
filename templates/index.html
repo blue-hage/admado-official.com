@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 
 {% block contents %}
-<main class="back-image d-flex flex-column justify-content-around pt-5 pb-5">
+<main class="flex-fill d-flex flex-column back-image text-light text-center pt-5 pb-5">
 
-    <h1 class="text-light text-center mt-sm-0 title">adMado</h1>
+    <h1 class="title">adMado</h1>
 
-    <div class="container">
-        <p class="text-light text-center">
+    <div class="flex-fill d-flex flex-column justify-content-around container">
+        {% block content %}
+        <p>
             それは広告新時代の窓（入口）<br>
             <span class="font-weight-bold font-italic">「自動車広告のマッチングプラットフォーム」</span>
         </p>    
     
-        <p class="text-light text-center mt-5">
+        <p>
             広告をより身近に。<br><br>
     
             街中を移動し、多くの人目に留まる<br>
@@ -19,9 +20,11 @@
     
             <span class="font-italic font-weight-bold">「車に載せる広告」</span>を提案します。
         </p>
+
+        <a type="button" class="btn btn-secondary btn-lg mx-auto">広告掲載を希望の方</a>
+        {% endblock %}
     </div>
     
-    <a type="button" class="btn btn-secondary w-auto mx-auto">広告掲載を希望の方</a>
 </main>
 {% endblock %}
 

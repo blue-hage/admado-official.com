@@ -30,5 +30,9 @@ def contact_page():
 def client_page():
   return render_template("client.html")
 
+@app.route("/contact/try")
+def contact_try():
+  return
+
 if __name__ == "__main__":
   app.run(debug=True)
