@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+<main class="flex-fill d-flex flex-column bg-secondary text-light text-center pt-5 pb-5">
+
+    <h1 class = "sub-titles">{% block head %}{% endblock %}</h1>
+        
+    <div class="flex-fill d-flex flex-column justify-content-around container">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+{% endblock %}
