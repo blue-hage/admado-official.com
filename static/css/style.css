@@ -1,7 +1,11 @@
 /* layout.html */
-html, body, main{
+html, body{
   height: 100%;
   width: 100%;
+}
+
+main{
+  height: auto;
 }
 
 .back-image{
@@ -9,6 +13,7 @@ html, body, main{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 1000px;
 }
 
 .title{
@@ -20,11 +25,6 @@ html, body, main{
 .policies{
   list-style: none;
   padding-left: 0;
-}
-
-/* for extended pages */
-main:not(.back-image){
-  height: auto;
 }
 
 .sub-titles{
