@@ -40,9 +40,6 @@
         <a href = "https://instagram.com/adMado_gr" class="navbar-brand mr-0 px-2">
           <img src = "{{ url_for('static', filename='imgs/instagramlogo.png') }}" width="30" height="30">
         </a>
-        <a href = "https://twitter.com/adMado_gr" class="navbar-brand mr-0 px-2">
-          <img src = "{{ url_for('static', filename='imgs/twitterlogo.png') }}" width="30" height="30">
-        </a>
       </div>
     </nav>
 
@@ -50,6 +47,20 @@
 
     <footer class="bg-light text-center">
       <small>© 2021 adMado</small>
+      
+      <div class="container">
+        <ul class="d-flex flex-column flex-sm-row policies justify-content-around">
+          <li>
+            <a href="/policy_user" class="text-secondary"><small>ユーザー利用規約</small></a>
+          </li>
+          <li>
+            <a href="/policy_pri" class="text-secondary"><small>プライバシーポリシー</small></a>
+          </li>
+          <li>
+            <a href="/policy_ad" class="text-secondary"><small>広告掲載規約</small></a>
+          </li>
+        </ul>
+      </div>
     </footer>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
