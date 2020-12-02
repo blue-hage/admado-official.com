@@ -1,5 +1,10 @@
 /* layout.html */
+.policies{
+  list-style: none;
+  padding-left: 0;
+}
 
+/* index.html */
 .back-image{
   background-image: url("/static/imgs/homeimage.jpg");
   background-position: center;
@@ -14,11 +19,7 @@
   padding-bottom: 2em;
 }
 
-.policies{
-  list-style: none;
-  padding-left: 0;
-}
-
+/* layout_pages.html */
 .sub-titles{
   font-size: 1.75em;
   padding-top: 3em;
