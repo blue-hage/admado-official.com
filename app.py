@@ -1,7 +1,9 @@
 #!/usr/local/bin/python3
 
 from flask import Flask, render_template, redirect, request
-import os
+import smtplib, os
+from email.mime.text import MIMEText
+from email.utils import formatdate
 
 app = Flask(__name__)
 app.secret_key = "blublunomi_gomugomu"
@@ -47,10 +49,25 @@ def aboutus_page():
 def contact_page():
   return render_template("contact.html")
 
+def mail_create():
+  msg = MIMEText(request.form.get("contents"))
+  msg["Subject"] = "お問い合わせ完了"
+  msg["From"] = os.environ["USER_NAME"]
+  msg["To"] = request.form.get("email")
+  msg["Date"] = formatdate()
+  return msg
+
 @app.route("/contact/try", methods=["POST"])
 def contact_try():
-  return msg("未完成", "/contact")
+  msg = mail_create()
+  host = os.environ["HOST"]
+  port = os.environ["PORT"]
 
+  smtp = smtplib.SMTP_SSL(host, port)
+  smtp.login(os.environ["USER_NAME"], os.environ["PASSWORD"])
+  smtp.send_message(msg)
+  smtp.quit()
+  return msg("お問い合わせ承りました！ありがとうございます。", "/contact")
 
 # client application page
 @app.route("/client")
