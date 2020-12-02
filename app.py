@@ -11,12 +11,14 @@ app.secret_key = "blublunomi_gomugomu"
 def index_page():
   return render_template("index.html")
 
+
 # concept page
 @app.route("/concept")
 def concept_page():
   return render_template("concept.html")
 
-# services page
+
+# services page branches
 @app.route("/services")
 def service_page():
   return render_template("services.html", aria_ge="true", show_ge="show", aria_dri="true", show_dri="show", aria_cli="true", show_cli="show")
@@ -33,10 +35,12 @@ def driver_page():
 def client_page():
   return render_template("services.html", aria_ge="false", aria_dri="false", aria_cli="true", show_cli="show")
 
-# about us page
+
+# aboutus page
 @app.route("/aboutus")
 def aboutus_page():
   return render_template("aboutus.html")
+
 
 # contact page
 @app.route("/contact")
