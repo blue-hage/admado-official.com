@@ -1,1 +1,57 @@
-{% extends "layout.html" %}
+{% extends "layout_pages.html" %}
+
+{% block head %}広告掲載のお申し込み{% endblock %}
+{% block content %}
+<div class="container mb-5">
+    <form action="/client/try" method="POST">
+        <div class="form-group col-sm-6 mx-auto">
+            <label for="name">貴社名又は個人名</label>
+            <input id="name" type="text" name="name" class="form-control" placeholder="株式会社アドマド">
+        </div>
+        <div class="form-group col-sm-6 mx-auto">
+            <label for="name">担当者氏名</label>
+            <input id="name" type="text" name="name" class="form-control" placeholder="アドマド 太郎">
+        </div>
+        <div class="form-group col-sm-6 mx-auto">
+            <label for="email">メールアドレス</label>
+            <input id="email" type="email" name="email" class="form-control" placeholder="name@example.com">
+        </div>
+        <div class="form-group col-sm-6 mx-auto">
+            <label for="email">電話番号</label>
+            <input id="email" type="email" name="email" class="form-control" placeholder="080-****-****">
+            <small class="form-text">
+                <a href="/policy_pri" target="_blank" rel="noopener noreferrer" class="text-dark font-weight-bold">
+                    プライバシーポリシーの規約はこちら
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-text-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm7.5 1.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 8a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </a>
+            </small>
+        </div>
+        <div class="form-group col-sm-6 mx-auto">
+            <label for="design">デザインファイル(*1)</label>
+            <input type="file" id="design" name="design" class="form-control-file">
+        </div>
+        <div class="form-group col-sm-6 mx-auto">
+            <label for="contents">その他</label>
+            <textarea id="contents" name="contents" rows="10" class="form-control" placeholder="疑問に思ったことありましたらお気軽にどうぞ！"></textarea>
+        </div>
+        
+        <div class="form-group col-sm-6 mx-auto">
+            <small class="form-text mb-2">
+                *1 デザインファイルに関しましては<br class="d-md-none">申込段階において必須ではありません。
+            </small>
+            <small class="form-text">
+                * 広告掲載をまだ希望されない方は<br class="d-md-none">
+                <a href="/contact" class="text-dark font-weight-bold">お問い合わせページ</a>よりお願い致します。
+            </small>
+        </div>
+
+        <div class="form-check mb-5">
+            <input type="checkbox" class="form-check-input" id="check_box" onclick="check()">
+            <label class="form-check-label" for="check_box">当社、<a href="/policy_ad" class="text-dark font-weight-bold" target="_blank" rel="noopener noreferrer">広告掲載規約</a>に同意する</label>
+        </div>
+        <button type="submit" class="btn btn-outline-light btn-lg" id="submit_button" disabled>送信</button>
+    </form>
+</div>
+{% endblock %}

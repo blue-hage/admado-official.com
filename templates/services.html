@@ -1,0 +1,155 @@
+{% extends "layout_pages.html" %}
+
+{% block head %}サービス内容{% endblock %}
+
+{% block content %}
+<small>* クライアント様を除くサービスはスマートフォンアプリ内のみ</small>
+<div class="container">
+  <div class="accordion" id="services">
+    <div class="card">
+      <div class="card-header" id="headingGeneral">
+        <h2 class="mb-0">
+          <button class="btn btn-light btn-block text-secondary" type="button" data-toggle="collapse" data-target="#general" aria-expanded="{{ aria_ge }}" aria-controls="general">
+            一般ユーザーの方々
+          </button>
+        </h2>
+      </div>
+  
+      <div id="general" class="collapse {{ show_ge }}" aria-labelledby="headingGeneral" data-parent="#services">
+        <div class="card-body bg-secondary">
+  
+          <h2 class="mb-5" name="general">利用までの流れ</h2>
+  
+          <div class="d-flex flex-column flex-md-row justify-content-center container mb-5">
+            <div class="flex-fill border border-light rounded-pill mx-md-5">会員登録</div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-5">評価</div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-5">入金</div>
+          </div>
+  
+          <div class="container">
+            <p>
+              adMadoでは、皆様からの評価システムを採用しております。<br><br>
+  
+              我々のアプリケーション上での位置情報システムを利用し広告を掲載している車両と一定の距離内ですれ違うと初めてその車に対して評価を行えます。<br><br>
+  
+              この評価システムは、広告掲示に対する不正を防止するためでもありながら皆様の広告への注目度向上にも繋がるシステムであると考えております。<br><br>
+              
+              皆様から頂いた評価は、1評価ごとに感謝料をお支払いします。
+            </p>
+  
+            <small>* 評価システム上、一般ユーザーの皆様の位置情報も使用させていただく必要がございます。<br></small>
+            <small>* 1つの評価に対する感謝料は、変動する可能性がございます。</small>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-header" id="headingDriver">
+        <h2 class="mb-0">
+          <button class="btn btn-light btn-block text-secondary" type="button" data-toggle="collapse" data-target="#driver" aria-expanded="{{ aria_dri }}" aria-controls="driver">
+            ドライバーの皆様
+          </button>
+        </h2>
+      </div>
+  
+      <div id="driver" class="collapse {{ show_dri }}" aria-labelledby="headingDriver" data-parent="#services">
+        <div class="card-body bg-secondary">
+  
+          <h2 class="mb-5" name="driver">利用までの流れ</h2>
+  
+          <div class="d-flex flex-column flex-md-row justify-content-center container mb-5">
+            <div class="flex-fill border border-light rounded-pill mx-md-3">会員登録</div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-3">広告を選ぶ</div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-3">広告貼り付け</div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-3">撮影＆運転</div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-3">入金</div>
+          </div>
+          
+          <div class="container">
+            <p>
+              ドライバーの皆様は、アプリ上から希望の広告を選び、申請していただきます。<br><br>
+
+              その後、届いた広告を車に貼って走行していただくことで、走行状況に応じた広告収入を得ることができます。<br><br>
+
+              広告のクライアント様により最低の走行時間を指定していただくため、それ以上走ることが条件となります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-header" id="headingClient">
+        <h2 class="mb-0">
+          <button class="btn btn-light btn-block text-secondary" type="button" data-toggle="collapse" data-target="#client" aria-expanded="{{ aria_cli }}" aria-controls="client">
+            クライアントの皆様
+          </button>
+        </h2>
+      </div>
+  
+      <div id="client" class="collapse {{ show_cli }}" aria-labelledby="headingClient" data-parent="#services">
+        <div class="card-body bg-secondary">
+  
+          <h2 class="mb-5" name="client">利用までの流れ</h2>
+          <div class="d-flex flex-column flex-md-row justify-content-center container mb-5">
+            <div class="flex-fill border border-light rounded-pill mx-md-5">当サイトより申込み</div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline-block">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-5"></div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline-block">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-5"></div>
+            <span class="d-md-none">&or;</span><span class="d-none d-md-inline-block">&gt;</span>
+            <div class="flex-fill border border-light rounded-pill mx-md-5"></div>
+          </div>
+  
+          <div class="container">
+            <p>
+              adMadoでの広告掲載に興味を持っていただきありがとうございます。<br>
+              我々は一つ一つの企業様や広告に対して全力で向き合い、最高のサービス提供をお約束します。
+            </p>
+    
+            <p>
+              我々の広告費制度は<br><br>
+  
+              <span class="font-weight-bold">
+                契約費（保証）<br>
+                ＋<br>
+                広告費の金額<br>
+                ＋<br>
+                評価数<br><br>
+              </span>
+  
+              による金額となっております。<br><br>
+  
+              広告費に関しましては各クライアント様との話し合いにて決定させて頂きます。<br>
+              また、様々な条件を追加することも可能です。<br><br>
+            </p>
+            
+            <ul class="d-inline-block pl-0 mb-5">
+              <li>ゴールド免許のみ</li>
+              <li>免許取得からの期間</li>
+              <li>台数</li>
+              <li>エリア</li>
+              <li>大きさ</li>
+            </ul>
+    
+            <p class="mb-5">
+              クライアントの皆様からは、出来高によって広告費をいただくシステムとなっております。
+            </p>
+          </div>
+          <a href="/client">
+            <button class="btn btn-outline-light">広告掲載に申し込む</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

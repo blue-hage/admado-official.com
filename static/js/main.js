@@ -1,9 +1,9 @@
+const check_box = document.getElementById("check_box");
+const button = document.getElementById("submit_button")
 function check(){
-  const check_box = document.getElementById("check");
-  const button = document.getElementById("submit")
   if(check_box.checked){
     button.disabled = false;
   }else{
-    button.disabled = true
+    button.disabled = true;
   }
-}
+};
