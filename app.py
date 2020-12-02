@@ -49,7 +49,7 @@ def contact_page():
 
 @app.route("/contact/try")
 def contact_try():
-  return redirect("/msg")
+  return redirect("/")
 
 
 # client application page
@@ -59,7 +59,7 @@ def client_app_page():
 
 @app.route("/client/try")
 def client_try():
-  return render_template("msg.html")
+  return redirect("/")
 
 
 # policies
@@ -75,6 +75,10 @@ def policy_pri():
 def policy_ad():
   return render_template("policy_ad.html")
 
+
+# message page
+def msg(s):
+  return render_template("msg.html", message=s)
 
 if __name__ == "__main__":
   app.run(debug=True)
