@@ -7,6 +7,7 @@ function check(){
     button.disabled = true;
   }
 };
+
 const check_box_cli = document.getElementById("check_box_cli");
 const button_cli = document.getElementById("submit_button_cli")
 function check_cli(){
