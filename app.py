@@ -47,9 +47,9 @@ def aboutus_page():
 def contact_page():
   return render_template("contact.html")
 
-@app.route("/contact/try")
+@app.route("/contact/try", methods=["POST"])
 def contact_try():
-  return redirect("/")
+  return msg("未完成", "/contact")
 
 
 # client application page
@@ -57,9 +57,9 @@ def contact_try():
 def client_app_page():
   return render_template("client.html")
 
-@app.route("/client/try")
+@app.route("/client/try", methods=["POST"])
 def client_try():
-  return redirect("/")
+  return msg("未完成", "/client")
 
 
 # policies
@@ -77,8 +77,8 @@ def policy_ad():
 
 
 # message page
-def msg(s):
-  return render_template("msg.html", message=s)
+def msg(ms, link):
+  return render_template("msg.html", message=ms, at=link)
 
 if __name__ == "__main__":
   app.run(debug=True)
