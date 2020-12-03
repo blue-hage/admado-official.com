@@ -64,7 +64,7 @@ def contact_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return redirect("/message")
+  return msg("お問い合わせ受付完了。確認メールをご確認ください。")
 
 
 # client application page
@@ -83,7 +83,7 @@ def client_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return redirect("/message")
+  return msg("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。")
 
 
 # policies
@@ -100,10 +100,8 @@ def policy_ad():
   return render_template("policy_ad.html")
 
 
-# message page
-@app.route("/message")
-def message_page():
-  return render_template("msg.html")
+def msg(msg):
+  return render_template("msg.html", message=msg)
 
 
 if __name__ == "__main__":
