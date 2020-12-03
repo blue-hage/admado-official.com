@@ -1,7 +1,9 @@
 {% extends "layout_pages.html" %}
 
 
-{% head %}{{ message }}{% endblock %}
+{% block head %}{{ message }}{% endblock %}
 {% block content %}
-<a href="/" class="text-dark">ホームに戻る</a>
+<div class="msg">
+  <a href="{{ at }}" class="text-dark">{{ text }}</a>
+</div>
 {% endblock %}

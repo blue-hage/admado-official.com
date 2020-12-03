@@ -1,16 +1,17 @@
 #!/usr/local/bin/python3
 
 from flask import Flask, render_template, redirect, request
-import smtplib, backend
+import smtplib, mail, client
 
 app = Flask(__name__)
 app.secret_key = "blublunomi_gomugomu"
 
-USER_NAME = "contact@admado-official.com"
-PASSWORD = "20201202"
+USER_NAME_CONTACT = "contact@admado-official.com"
+PASSWORD_CONTACT = "20201202"
+USER_NAME_CLIENT = "client@admado-official.com"
+PASSWORD_CLIENT = "20201203"
 HOST = "om1002.coreserver.jp"
 PORT = 465
-ADMADO_RECIPIENT = "contact-receiver@admado-official.com"
 
 # home page
 @app.route("/")
@@ -55,16 +56,16 @@ def contact_page():
 
 @app.route("/contact/try", methods=["POST"])
 def contact_try():
-  msg = backend.contact_create()
+  msg = mail.contact_create()
   host = HOST
   port = PORT
 
   smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME, PASSWORD)
+  smtp.login(USER_NAME_CONTACT, PASSWORD_CONTACT)
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。")
+  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
 
 
 # client application page
@@ -74,16 +75,18 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  msg = backend.client_create()
+  design = request.files.get('design')
+  client.save_file(design)
+  msg = mail.client_create()
   host = HOST
   port = PORT
 
   smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME, PASSWORD)
+  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return msg("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。")
+  return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
 
 
 # policies

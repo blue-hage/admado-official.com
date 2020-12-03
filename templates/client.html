@@ -3,7 +3,7 @@
 {% block head %}広告掲載のお申し込み{% endblock %}
 {% block content %}
 <div class="container mb-5">
-    <form action="/client/try" method="POST">
+    <form action="/client/try" method="POST" enctype="multipart/form-data">
         <div class="form-group col-sm-6 mx-auto">
             <label for="name">貴社名又は個人名</label>
             <input id="name" type="text" name="name" class="form-control" placeholder="株式会社アドマド">
@@ -31,6 +31,7 @@
         <div class="form-group col-sm-6 mx-auto">
             <label for="design">デザインファイル(*1)</label>
             <input type="file" id="design" name="design" class="form-control-file">
+            <small class="form-text text-dark font-weight-bold">* JPG又はJPEGファイルのみ</small>
         </div>
         <div class="form-group col-sm-6 mx-auto">
             <label for="contents">その他</label>
