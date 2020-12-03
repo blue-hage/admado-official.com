@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 from flask import request, redirect
 from email.mime.text import MIMEText
 from email.utils import formatdate
