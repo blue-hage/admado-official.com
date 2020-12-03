@@ -64,7 +64,7 @@ def contact_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return msg("お問い合わせ受付完了。確認メールをご確認ください。")
+  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。")
 
 
 # client application page
@@ -98,10 +98,6 @@ def policy_pri():
 @app.route("/policy_ad")
 def policy_ad():
   return render_template("policy_ad.html")
-
-
-def msg(msg):
-  return render_template("msg.html", message=msg)
 
 
 if __name__ == "__main__":
