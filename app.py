@@ -1,18 +1,17 @@
 #!/usr/local/bin/python3
 
-from email.mime.text import MIMEText
-from email.utils import formatdate
 from flask import Flask, render_template, redirect, request
-import smtplib
+import smtplib, mail, client
 
 app = Flask(__name__)
 app.secret_key = "blublunomi_gomugomu"
 
-USER_NAME = "contact@admado-official.com"
-PASSWORD = "20201202"
+USER_NAME_CONTACT = "contact@admado-official.com"
+PASSWORD_CONTACT = "20201202"
+USER_NAME_CLIENT = "client@admado-official.com"
+PASSWORD_CLIENT = "20201203"
 HOST = "om1002.coreserver.jp"
 PORT = 465
-ADMADO_RECIPIENT = "contact-receiver@admado-official.com"
 
 # home page
 @app.route("/")
@@ -55,33 +54,19 @@ def aboutus_page():
 def contact_page():
   return render_template("contact.html")
 
-def mail_create():
-  body1 = "test"
-  msg1 = MIMEText(body1, "html")
-  msg1["Subject"] = "お問い合わせ完了"
-  msg1["From"] = USER_NAME
-  msg1["To"] = request.form.get("email")
-
-  body2 = "test"
-  msg2 = MIMEText(body2 , "html")
-  msg2["Subject"] = "お問い合わせの受付"
-  msg2["From"] = USER_NAME
-  msg2["To"] = ADMADO_RECIPIENT
-  msg = [msg1, msg2]
-  return msg
-
 @app.route("/contact/try", methods=["POST"])
 def contact_try():
-  msg = mail_create()
+  msg = mail.contact_create()
   host = HOST
   port = PORT
 
   smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME, PASSWORD)
+  smtp.login(USER_NAME_CONTACT, PASSWORD_CONTACT)
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return redirect("/message")
+  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
+
 
 # client application page
 @app.route("/client")
@@ -90,7 +75,18 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  return message_page("未完成", "/client")
+  design = request.files.get('design')
+  client.save_file(design)
+  msg = mail.client_create()
+  host = HOST
+  port = PORT
+
+  smtp = smtplib.SMTP_SSL(host, port)
+  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
+  smtp.send_message(msg[0])
+  smtp.send_message(msg[1])
+  smtp.quit()
+  return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
 
 
 # policies
@@ -106,11 +102,6 @@ def policy_pri():
 def policy_ad():
   return render_template("policy_ad.html")
 
-
-# message page
-@app.route("/message")
-def message_page():
-  return render_template("msg.html")
 
 if __name__ == "__main__":
   app.run(debug=True)
