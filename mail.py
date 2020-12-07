@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import os
+from client import allowed_file
 
 USER_NAME_CONTACT = "contact@admado-official.com"
 USER_NAME_CLIENT = "client@admado-official.com"
@@ -56,8 +57,13 @@ def client_create(attachment):
   tel = request.form.get("tel")
   name = request.form.get("name")
   contents = request.form.get("contents")
-  design = request.files['design']
-  filename = design.filename
+
+  if attachment is not None:
+    design = request.files['design']
+    filename = design.filename
+  else:
+    filename = "無し"
+
 
   body1 = """
   {0}様
@@ -96,11 +102,12 @@ def client_create(attachment):
   body2 = MIMEText(body2)
   msg2.attach(body2)
 
-  fp = open(attachment, 'rb')
-  img = MIMEImage(fp.read())
-  fp.close()
-  img.add_header('Content-Disposition', "attachment; filename= %s" % filename)
-  msg2.attach(img)
+  if attachment is not None:
+    fp = open(attachment, 'rb')
+    img = MIMEImage(fp.read())
+    fp.close()
+    img.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+    msg2.attach(img)
   
   msg = [msg1, msg2]
   return msg
