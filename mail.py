@@ -2,7 +2,9 @@
 
 from flask import request, redirect
 from email.mime.text import MIMEText
-from email.utils import formatdate
+from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage
+import os
 
 USER_NAME_CONTACT = "contact@admado-official.com"
 USER_NAME_CLIENT = "client@admado-official.com"
@@ -47,12 +49,13 @@ def contact_create():
   return msg
 
 
-def client_create():
+def client_create(attachment):
   email = request.form.get("email")
   tel = request.form.get("tel")
   name = request.form.get("name")
   contents = request.form.get("contents")
-  design = request.form.get("design")
+  design = request.files['design']
+  filename = design.filename
 
   body1 = """
   {0}様
@@ -69,7 +72,7 @@ def client_create():
   電話番号: {2}
   デザインファイル: {3}
   その他: {4}
-  """.format(name, email, tel, design, contents)
+  """.format(name, email, tel, filename, contents)
 
   msg1 = MIMEText(body1)
   msg1["Subject"] = "広告掲載応募"
@@ -82,12 +85,20 @@ def client_create():
   電話番号: {2}
   デザインファイル: {3}
   その他: {4}
-  """.format(name, email, tel, design, contents)
+  """.format(name, email, tel, filename, contents)
 
-  msg2 = MIMEText(body2)
+  msg2 = MIMEMultipart()
   msg2["Subject"] = "広告掲載申込"
   msg2["From"] = USER_NAME_CLIENT
   msg2["To"] = ADMADO_RECIPIENT_CLIENT
+  body2 = MIMEText(body2)
+  msg2.attach(body2)
+
+  fp = open(attachment, 'rb')
+  img = MIMEImage(fp.read())
+  fp.close()
+  img.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+  msg2.attach(img)
   
   msg = [msg1, msg2]
   return msg
