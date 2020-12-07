@@ -12,7 +12,7 @@ def allowed_file(filename):
 
 def save_file():
   if request.method == 'POST':
-    if 'design' not in request.files:
+    if not request.files:
       return "ok"
     design = request.files['design']
     if allowed_file(design.filename) is False:
