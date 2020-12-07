@@ -75,9 +75,8 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  design = request.files.get('design')
-  client.save_file(design)
-  msg = mail.client_create()
+  attach = client.save_file()
+  msg = mail.client_create(attach)
   host = HOST
   port = PORT
 
