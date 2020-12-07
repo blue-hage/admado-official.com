@@ -11,15 +11,16 @@ def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def save_file():
-  if request.method == 'POST':
-    if not request.files:
-      return "ok"
-    design = request.files['design']
-    if allowed_file(design.filename) is False:
-      return False
-    if design and allowed_file(design.filename):
-      filename = secure_filename(design.filename)
-      design.save(os.path.join(FILES_DIR, filename))
-      return FILES_DIR + '/' + filename
+  if not request.files:
+    return "ok"
+  design = request.files['design']
+
+  if allowed_file(design.filename) is False:
+    return False
+
+  if design and allowed_file(design.filename):
+    filename = secure_filename(design.filename)
+    design.save(os.path.join(FILES_DIR, filename))
+    return FILES_DIR + '/' + filename
       
   
