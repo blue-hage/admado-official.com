@@ -15,8 +15,8 @@ def save_file():
     return "ok"
   design = request.files['design']
 
-  if allowed_file(design.filename) is False:
-    return False
+  # if allowed_file(design.filename) is False:
+  #   return False
 
   if design and allowed_file(design.filename):
     filename = secure_filename(design.filename)
