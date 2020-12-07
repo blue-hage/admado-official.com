@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-from flask import request, redirect
+from flask import request
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
@@ -8,6 +8,8 @@ import os
 
 USER_NAME_CONTACT = "contact@admado-official.com"
 USER_NAME_CLIENT = "client@admado-official.com"
+PASSWORD_CONTACT = "20201202"
+PASSWORD_CLIENT = "20201203"
 ADMADO_RECIPIENT_CONTACT = "contact-receiver@admado-official.com"
 ADMADO_RECIPIENT_CLIENT = "client-receiver@admado-official.com"
 
