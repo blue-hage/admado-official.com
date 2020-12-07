@@ -73,10 +73,10 @@ def client_app_page():
 @app.route("/client/try", methods=["POST"])
 def client_try():
   attach = client.save_file()
-  if attach is False:
-    return render_template("msg.html", message="デザインは、JPG、PNG、JPEGファイルでお願い致します。", at="/contact", text="フォームに戻る")
   if attach == "ok":
     attach = None
+  elif attach is False:
+    return render_template("msg.html", message="デザインは、JPG、PNG、JPEGファイルでお願い致します。", at="/contact", text="フォームに戻る")
   msg = mail.client_create(attach)
   host = HOST
   port = PORT
