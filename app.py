@@ -1,15 +1,12 @@
 #!/usr/local/bin/python3
 
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template
 import smtplib, mail, client
+from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
 
 app = Flask(__name__)
 app.secret_key = "blublunomi_gomugomu"
 
-USER_NAME_CONTACT = "contact@admado-official.com"
-PASSWORD_CONTACT = "20201202"
-USER_NAME_CLIENT = "client@admado-official.com"
-PASSWORD_CLIENT = "20201203"
 HOST = "om1002.coreserver.jp"
 PORT = 465
 
@@ -76,6 +73,10 @@ def client_app_page():
 @app.route("/client/try", methods=["POST"])
 def client_try():
   attach = client.save_file()
+  if attach == "ok":
+    attach = None
+  # elif attach is False:
+  #   return render_template("msg.html", message="デザインは、JPG、PNG、JPEGファイルでお願い致します。", at="/contact", text="フォームに戻る")
   msg = mail.client_create(attach)
   host = HOST
   port = PORT
