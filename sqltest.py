@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 import mysql.connector
 config = {
   'host':'localhost',
