@@ -1,11 +1,20 @@
 #!/usr/local/bin/python3
+from sql import exec
 
-import mysql.connector
-config = {
-  'host':'localhost',
-  'user':'bluroom_client',
-  'password':'20201213',
-  'database':'bluroom_client'
-}
-conn = mysql.connector.connect(**config)
-print(conn.is_connected())
+exec("""
+CREATE TABLE clients(
+  file_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  company_id TEXT,
+  user_id TEXT,
+  filename TEXT,
+  created_at TIMESTAMP DEFAULT (DATETIME('now', 'localtime'))
+)
+""")
+
+exec("""
+CREATE TABLE admin(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT,
+  pwd TEXT
+)
+""")
