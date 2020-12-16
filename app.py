@@ -77,15 +77,15 @@ def client_try():
     attach = None
   elif attach == 0:
     return messsage("エラー", "/contact", "申込画面に戻る")
-  msg = mail.client_create(attach)
-  host = HOST
-  port = PORT
+  # msg = mail.client_create(attach)
+  # host = HOST
+  # port = PORT
 
-  smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
-  smtp.send_message(msg[0])
-  smtp.send_message(msg[1])
-  smtp.quit()
+  # smtp = smtplib.SMTP_SSL(host, port)
+  # smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
+  # smtp.send_message(msg[0])
+  # smtp.send_message(msg[1])
+  # smtp.quit()
   return messsage("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", "/", "ホームに戻る")
 
 
