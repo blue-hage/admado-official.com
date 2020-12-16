@@ -76,7 +76,7 @@ def client_try():
   if attach == "ok":
     attach = None
   elif attach == 0:
-    return messsage("エラー", "/contact", "申込画面に戻る")
+    return messsage("エラー", "/client", "申込画面に戻る")
   # msg = mail.client_create(attach)
   # host = HOST
   # port = PORT
