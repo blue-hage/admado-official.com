@@ -20,7 +20,7 @@ def save_file():
     filename = secure_filename(design.filename)
     new = sql.new_client(request.args)
     if new == 0: return 0
-    filename = sql.select('SELECT file_id FROM clients WHERE filename = ?', filename) + "_" + filename
+    filename = sql.select('SELECT file_id FROM test WHERE filename = ?', filename) + "_" + filename
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename
       
