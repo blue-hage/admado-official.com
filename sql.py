@@ -33,7 +33,7 @@ def select(sql, *args):
   c.execute(sql, args)
   return c.fetchall()
 
-def new_client(args):
+def new_client():
   company_id = request.form.get("company_id", "")
   user_id = request.form.get("user_id", "")
   filename = request.form.get("design", "")
