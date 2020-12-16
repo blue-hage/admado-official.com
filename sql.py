@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 import mysql.connector
+from flask import request
 
 config = {
   'host':'localhost',
@@ -33,9 +34,9 @@ def select(sql, *args):
   return c.fetchall()
 
 def new_client(args):
-  company_id = args.get("company_id", "")
-  user_id = args.get("user_id", "")
-  filename = args.get("design", "")
+  company_id = request.form.get("company_id", "")
+  user_id = request.form.get("user_id", "")
+  filename = request.form.get("design", "")
   if company_id == "" or user_id == "": return 0
   exec('INSERT INTO test (company_id, user_id, filename) VALUES (?, ?, ?)', company_id, user_id, filename)
   return 1

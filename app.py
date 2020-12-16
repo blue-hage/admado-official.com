@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 
 from flask import Flask, render_template
-import smtplib, mail, client
+import smtplib, mail, client, sql
 from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
 
 app = Flask(__name__)
@@ -72,11 +72,12 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
+  new = sql.new_client()
+  if new == 0: return messsage("エラー", "/client", "申込画面に戻る")
+  
   attach = client.save_file()
-  if attach == "ok":
-    attach = None
-  elif attach == 0:
-    return messsage("エラー", "/client", "申込画面に戻る")
+  if attach == "ok": attach = None
+
   # msg = mail.client_create(attach)
   # host = HOST
   # port = PORT
