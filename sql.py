@@ -38,5 +38,5 @@ def new_client(args):
   user_id = request.form.get("user_id", "")
   filename = request.form.get("design", "")
   if company_id == "" or user_id == "": return 0
-  exec('INSERT INTO test (company_id, user_id, filename) VALUES (?, ?, ?)', company_id, user_id, filename)
+  exec('INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, ?, ?, ?, CURRENT_TIMESTAMP)', company_id, user_id, filename)
   return 1
