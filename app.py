@@ -62,7 +62,7 @@ def contact_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
+  return messsage("お問い合わせ完了。確認メールをご確認ください。", "/", "ホームに戻る")
 
 
 # client application page
@@ -75,8 +75,8 @@ def client_try():
   attach = client.save_file()
   if attach == "ok":
     attach = None
-  # elif attach is False:
-  #   return render_template("msg.html", message="デザインは、JPG、PNG、JPEGファイルでお願い致します。", at="/contact", text="フォームに戻る")
+  elif attach == 0:
+    return messsage("エラー", "/contact", "申込画面に戻る")
   msg = mail.client_create(attach)
   host = HOST
   port = PORT
@@ -86,7 +86,7 @@ def client_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
+  return messsage("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", "/", "ホームに戻る")
 
 
 # policies
@@ -101,6 +101,9 @@ def policy_pri():
 @app.route("/policy_ad")
 def policy_ad():
   return render_template("policy_ad.html")
+
+def messsage(msg, link, text):
+  return render_template("msg.html", message=msg, at=link, text=text)
 
 
 if __name__ == "__main__":

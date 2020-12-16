@@ -31,3 +31,11 @@ def select(sql, *args):
   c = db.cursor()
   c.execute(sql, args)
   return c.fetchall()
+
+def new_client(args):
+  company_id = args.get("company_id", "")
+  user_id = args.get("user_id", "")
+  filename = args.get("design", "")
+  if company_id == "" or user_id == "": return 0
+  exec('INSERT INTO clients (company_id, user_id, filename) VALUES (?, ?)', company_id, user_id, filename)
+  return 1
