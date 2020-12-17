@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 
 import os
-from flask import render_template, request
+from flask import request
 from werkzeug.utils import secure_filename
 import sql
 
@@ -21,7 +21,7 @@ def save_file():
   origin = secure_filename(request.form.get("design", ""))
 
   if design and allowed_file(origin):
-    head = sql.exec('INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, ?, ?, ?, CURRENT_TIMESTAMP)', company_id, user_id, origin)
+    head = sql.new_client(company_id, user_id, origin)
     filename = head + "_" + origin
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename

@@ -1,7 +1,5 @@
 #!/usr/local/bin/python3
 import mysql.connector
-from flask import request
-from werkzeug.utils import secure_filename
 
 config = {
   'host':'localhost',
@@ -34,12 +32,14 @@ def select(sql, *args):
   c.execute(sql, args)
   return c.fetchall()
 
-# def new_client(*args):
-#   db = open_db()
-#   c = db.cursor()
-#   sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
-#   val = (args)
-#   c.execute(sql, val)
-#   c.close()
-#   db.commit()
-#   db.close()
+def new_client(*args):
+  db = open_db()
+  c = db.cursor()
+  sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
+  val = (args)
+  c.execute(sql, val)
+  a = c.lastrowid
+  c.close()
+  db.commit()
+  db.close()
+  return a
