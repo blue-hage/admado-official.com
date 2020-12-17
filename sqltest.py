@@ -16,5 +16,6 @@ mycursor = conn.cursor()
 sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
 val = (company_id, user_id, filename)
 mycursor.execute(sql, val)
+mycursor.close()
 conn.commit()
 conn.close()

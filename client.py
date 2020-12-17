@@ -18,8 +18,8 @@ def save_file():
   design = request.files['design']
 
   if design and allowed_file(design.filename):
-    filename = secure_filename(design.filename)
-    # filename = sql.select('SELECT file_id FROM test WHERE filename = ?', filename) + "_" + origin
+    origin = secure_filename(design.filename)
+    filename = sql.select('SELECT file_id FROM test WHERE filename = ?', filename) + "_" + origin
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename
       
