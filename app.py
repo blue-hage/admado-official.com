@@ -72,11 +72,8 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  new = sql.new_client()
-  if new == 0: return messsage("エラー", "/client", "申込画面に戻る")
-  
   attach = client.save_file()
-  if attach == "ok": attach = None
+  if attach == "no file": attach = None
 
   # msg = mail.client_create(attach)
   # host = HOST
