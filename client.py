@@ -16,11 +16,13 @@ def save_file():
     return "no file"
 
   design = request.files['design']
+  company_id = request.form.get("company_id", "")
+  user_id = request.form.get("user_id", "")
+  origin = secure_filename(request.form.get("design", ""))
 
-  if design and allowed_file(design.filename):
-    plain = sql.new_client()
-    head = sql.select('SELECT file_id FROM test WHERE filename = ?', plain)
-    filename = head + "_" + plain
+  if design and allowed_file(origin):
+    head = sql.exec('INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, ?, ?, ?, CURRENT_TIMESTAMP)', company_id, user_id, origin)
+    filename = head + "_" + origin
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename
       

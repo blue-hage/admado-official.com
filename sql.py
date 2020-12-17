@@ -34,18 +34,12 @@ def select(sql, *args):
   c.execute(sql, args)
   return c.fetchall()
 
-def new_client():
-  company_id = request.form.get("company_id", "")
-  user_id = request.form.get("user_id", "")
-  filename = secure_filename(request.form.get("design", ""))
-  if company_id == None or user_id == None: return "no file"
-  
-  db = open_db()
-  c = db.cursor()
-  sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
-  val = (company_id, user_id, filename)
-  c.execute(sql, val)
-  c.close()
-  db.commit()
-  db.close()
-  return filename
+# def new_client(*args):
+#   db = open_db()
+#   c = db.cursor()
+#   sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
+#   val = (args)
+#   c.execute(sql, val)
+#   c.close()
+#   db.commit()
+#   db.close()
