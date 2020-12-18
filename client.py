@@ -11,7 +11,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def save_file(file):
+def save_file(name):
   design = request.files['design']
 
   if not request.files:
@@ -19,7 +19,7 @@ def save_file(file):
 
   if design and allowed_file(design.filename):
 
-    design.save(os.path.join(FILES_DIR, file))
-    return FILES_DIR + '/' + file
+    design.save(os.path.join(FILES_DIR, name))
+    return FILES_DIR + '/' + name
       
   
