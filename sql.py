@@ -47,3 +47,6 @@ def new_client():
   conn.commit()
   conn.close()
   return design.filename
+
+if __name__ == "__main__":
+  exec('INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)', "adMado", "user", "about.png")

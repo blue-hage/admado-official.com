@@ -8,8 +8,8 @@ config = {
   'database':'bluroom_client'
 }
 
-company_id = "adMado"
-user_id = "太郎"
+company_id = "adMado_"
+user_id = "太郎_"
 filename = "admado.png"
 conn = mysql.connector.connect(**config)
 mycursor = conn.cursor()
