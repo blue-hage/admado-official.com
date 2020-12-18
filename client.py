@@ -12,13 +12,13 @@ def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def save_file():
-  if not request.files:
-    return "no file"
-
   design = request.files['design']
   company_id = request.form.get("company_id")
   user_id = request.form.get("user_id")
   origin = request.form.get("design")
+
+  if not request.files:
+    return "no file"
 
   if design and allowed_file(origin):
     head = sql.new_client(company_id, user_id, origin)
