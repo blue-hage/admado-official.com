@@ -17,9 +17,10 @@ def contact_create(email, name, contents):
 
   当サイトをご覧頂きありがとうございます。
   お問い合わせを承りました。
-  返信に多少のお時間を頂く事があります、ご理解・ご協力をよろしくお願い致します。
+  返信に多少のお時間を頂く事がございます。
+  ご理解・ご協力をよろしくお願い致します。
 
-  * こちらは自動返信用メールとなっております。
+  * こちらは自動返信メールとなっております。ご返信はお控え下さい。
 
   (お問い合わせ内容)
   お名前: {0}様
@@ -47,11 +48,7 @@ def contact_create(email, name, contents):
   return msg
 
 
-def client_create(attachment):
-  email = request.form.get("email")
-  tel = request.form.get("tel")
-  name = request.form.get("name")
-  contents = request.form.get("contents")
+def client_create(email, tel, company, user, contents, attachment):
 
   if attachment is not None:
     design = request.files['design']
@@ -62,17 +59,22 @@ def client_create(attachment):
 
   body1 = """
   {0}様
-  当サイトをご覧いただきありがとうございます。
-  当社サービスでの広告掲載申込を承りました。
-  ご返信に多少のお時間をいただく事があります、ご理解の方の方をよろしくお願い致します。
-  * こちらは自動返信用メールとなっております。
+
+  当サイトをご覧頂きありがとうございます。
+  当社サービスへの広告掲載申込を承りました。
+  返信に多少のお時間を頂く事がございます。
+  ご理解・ご協力をよろしくお願い致します。
+
+  * こちらは自動返信メールとなっております。ご返信はお控え下さい。
+
   (受付内容)
-  お名前: {0}
-  メールアドレス: {1}
-  電話番号: {2}
-  デザインファイル: {3}
-  その他: {4}
-  """.format(name, email, tel, filename, contents)
+  企業（個人）名: {0}様
+  ご担当者様: {1}様
+  メールアドレス: {2}
+  電話番号: {3}
+  デザインファイル: {4}
+  その他: {5}
+  """.format(company, user, email, tel, filename, contents)
 
   msg1 = MIMEText(body1)
   msg1["Subject"] = "広告掲載応募"
@@ -80,12 +82,13 @@ def client_create(attachment):
   msg1["To"] = email
 
   body2 = """
-  お名前: {0}
-  メールアドレス: {1}
-  電話番号: {2}
-  デザインファイル: {3}
-  その他: {4}
-  """.format(name, email, tel, filename, contents)
+  企業（個人）名: {0}
+  ご担当者様: {1}
+  メールアドレス: {2}
+  電話番号: {3}
+  デザインファイル: {4}
+  その他: {5}
+  """.format(company, user, email, tel, filename, contents)
 
   msg2 = MIMEMultipart()
   msg2["Subject"] = "広告掲載申込"
