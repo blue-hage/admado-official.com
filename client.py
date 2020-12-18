@@ -14,5 +14,4 @@ def save_file(name, design, file_id):
   if design and allowed_file(design.filename):
     filename = file_id + "_" + name
     design.save(os.path.join(FILES_DIR, filename))
-    result = [FILES_DIR + '/' + filename, filename]
-    return result
+    return FILES_DIR + '/' + filename

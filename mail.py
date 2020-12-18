@@ -48,15 +48,7 @@ def contact_create(email, name, contents):
   return msg
 
 
-def client_create(email, tel, company, user, contents, attachment):
-
-  if attachment is not None:
-    design = request.files['design']
-    filename = design.filename
-  else:
-    filename = "無し"
-
-
+def client_create(email, tel, company, user, contents, attachment, filename):
   body1 = """
   {0}様
 
@@ -68,12 +60,12 @@ def client_create(email, tel, company, user, contents, attachment):
   * こちらは自動返信メールとなっております。ご返信はお控え下さい。
 
   (受付内容)
-  企業（個人）名: {0}様
-  ご担当者様: {1}様
-  メールアドレス: {2}
-  電話番号: {3}
-  デザインファイル: {4}
-  その他: {5}
+  企業名(個人名):　{0}
+  ご担当者様:　{1}
+  メールアドレス:　{2}
+  電話番号:　{3}
+  デザインファイル:　{4}
+  その他:　{5}
   """.format(company, user, email, tel, filename, contents)
 
   msg1 = MIMEText(body1)
@@ -82,12 +74,12 @@ def client_create(email, tel, company, user, contents, attachment):
   msg1["To"] = email
 
   body2 = """
-  企業（個人）名: {0}
-  ご担当者様: {1}
-  メールアドレス: {2}
-  電話番号: {3}
-  デザインファイル: {4}
-  その他: {5}
+  企業名(個人名):　{0}
+  ご担当者様:　{1}
+  メールアドレス:　{2}
+  電話番号:　{3}
+  デザインファイル:　{4}
+  その他:　{5}
   """.format(company, user, email, tel, filename, contents)
 
   msg2 = MIMEMultipart()
