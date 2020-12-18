@@ -47,7 +47,14 @@ def contact_create(email, name, contents):
   return msg
 
 
-def client_create(email, tel, company_id, user_id, contents, attachment, filename):
+def client_create(email, tel, company_id, user_id, contents, attachment):
+  
+  if attachment is not None:
+    design = request.files['design']
+    filename = design.filename
+  else:
+    filename = "無し"
+  
   body1 = """
   {0}様
 
@@ -72,7 +79,7 @@ def client_create(email, tel, company_id, user_id, contents, attachment, filenam
   msg1["To"] = email
 
   body2 = """
-  会社名（個人名）: {0}様
+  会社名（個人名）: {0}
   ご担当者様: {1}
   メールアドレス: {2}
   電話番号: {3}

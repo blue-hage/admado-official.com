@@ -91,10 +91,11 @@ def client_try():
     filename = "無し"
 
   file_id = str(sql.exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
-  attach = client.save_file(filename, design, file_id)
-  # if attach == "no file": attach = None
 
-  msg = mail.client_create(email, tel, company_id, user_id, contents, design, filename)
+  attach = client.save_file(filename, design, file_id)
+  # if attach[0] == "no file": attach[1] = None
+
+  msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], attach[1])
   host = HOST
   port = PORT
 
