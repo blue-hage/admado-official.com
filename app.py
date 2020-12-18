@@ -89,7 +89,7 @@ def client_try():
     design = None
     filename = "No"
 
-  file_id = sql.new_client(company_id, user_id, filename)
+  file_id = str(sql.exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
 
   attach = client.save_file(filename, design, company_id, user_id, file_id)
   if attach == "no file": attach = None

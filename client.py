@@ -16,7 +16,7 @@ def save_file(name, design, company_id, user_id, file_id):
     return "no file"
 
   if design and allowed_file(design.filename):
-    picId = sql.select('SELECT * FROM test WHERE filename=%s AND company_id=%s', name, company_id)
+    # picId = sql.select('SELECT * FROM test WHERE filename=%s AND company_id=%s', name, company_id)
     # filename = str(picId[0][0]) + "_" + name
     filename = file_id + "_" + name
     design.save(os.path.join(FILES_DIR, filename))
