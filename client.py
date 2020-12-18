@@ -23,6 +23,6 @@ def save_file(name, design, company_id, user_id):
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename
 
-# if __name__ == "__main__":
-#   name = sql.select('SELECT * FROM test WHERE filename=%s AND user_id=%s', 'aboutus.png', "aaaaa")
-#   print(name[0][0])
+if __name__ == "__main__":
+  name = sql.select('SELECT * FROM test WHERE filename=%s AND user_id=%s', 'aboutus.png', "aaaaa")
+  print(type(name[0][0]))
