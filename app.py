@@ -88,12 +88,11 @@ def client_try():
     filename = secure_filename(design.filename)
   else:
     design = None
-    filename = "無し"
+    filename = "No"
 
   file_id = str(sql.exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
 
   attach = client.save_file(filename, design, file_id)
-  # if attach[0] == "no file": attach[1] = None
 
   msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
   host = HOST
