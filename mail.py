@@ -17,15 +17,15 @@ def contact_create(email, name, contents):
 
   当サイトをご覧頂きありがとうございます。
   お問い合わせを承りました。
-  返信に多少のお時間を頂く事がございます。
+  返答に多少のお時間を頂く事がございます。
   ご理解・ご協力をよろしくお願い致します。
 
   * こちらは自動返信メールとなっております。ご返信はお控え下さい。
 
   (お問い合わせ内容)
-  お名前: {0}様
-  メールアドレス: {1}
-  内容: {2}
+  お名前:　{0}様
+  メールアドレス:　{1}
+  お問い合わせ内容:　{2}
   """.format(name, email, contents)
 
   msg1 = MIMEText(body1)
@@ -34,9 +34,9 @@ def contact_create(email, name, contents):
   msg1["To"] = email
 
   body2 = """
-  お名前: {0}
-  メールアドレス: {1}
-  お問い合わせ内容: {2}
+  お名前:　{0}
+  メールアドレス:　{1}
+  お問い合わせ内容:　{2}
   """.format(name, email, contents)
 
   msg2 = MIMEText(body2)
@@ -53,7 +53,7 @@ def client_create(email, tel, company, user, contents, attachment, filename, rea
   {0}様
 
   当サイトをご覧頂きありがとうございます。
-  当社サービスへの広告掲載申込を承りました。
+  当社サービスでの広告掲載申込を承りました。
   返信に多少のお時間を頂く事がございます。
   ご理解・ご協力をよろしくお願い致します。
 
