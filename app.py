@@ -83,7 +83,7 @@ def client_try():
   user_id = request.form.get("user_id")
   contents = request.form.get("contents")
 
-  if request.files:
+  if request.files['design']:
     design = request.files['design']
     filename = secure_filename(design.filename)
   else:
