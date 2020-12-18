@@ -95,7 +95,7 @@ def client_try():
   attach = client.save_file(filename, design, file_id)
   # if attach[0] == "no file": attach[1] = None
 
-  msg = mail.client_create(email, tel, company_id, user_id, contents, attach, filename)
+  msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
   host = HOST
   port = PORT
 

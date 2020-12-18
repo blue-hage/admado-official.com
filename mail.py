@@ -48,7 +48,7 @@ def contact_create(email, name, contents):
   return msg
 
 
-def client_create(email, tel, company, user, contents, attachment, filename):
+def client_create(email, tel, company, user, contents, attachment, filename, real):
   body1 = """
   {0}様
 
@@ -60,8 +60,8 @@ def client_create(email, tel, company, user, contents, attachment, filename):
   * こちらは自動返信メールとなっております。ご返信はお控え下さい。
 
   (受付内容)
-  企業名(個人名):　{0}
-  ご担当者様:　{1}
+  貴社名(個人名):　{0}様
+  ご担当者様:　{1}様
   メールアドレス:　{2}
   電話番号:　{3}
   デザインファイル:　{4}
@@ -80,7 +80,7 @@ def client_create(email, tel, company, user, contents, attachment, filename):
   電話番号:　{3}
   デザインファイル:　{4}
   その他:　{5}
-  """.format(company, user, email, tel, filename, contents)
+  """.format(company, user, email, tel, real, contents)
 
   msg2 = MIMEMultipart()
   msg2["Subject"] = "広告掲載申込"
