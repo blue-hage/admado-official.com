@@ -4,32 +4,11 @@
 
 {% block content %}
 <div class="d-flex flex-column flex-sm-row">
-    <div class="container profiles">
-        <img src="{{ url_for('static', filename='imgs/noskay.jpg') }}" width="200" height="200" class="rounded-circle d-block mx-auto mb-3">
-        <p>
-            CEO<br>
-            清田&nbsp;龍之介
-        </p>
-        <ul class="list-group list-group-flush rounded">
-            <li class="list-group-item list-group-item-secondary">
-                Whanganui High School卒
-            </li>
-            <li class="list-group-item list-group-item-secondary">
-                立命館大学情報理工学部<br>情報システムグローバルコース所属
-            </li>
-            <li class="list-group-item list-group-item-secondary font-weight-bold">
-                趣味&nbsp;:&nbsp;アート収集
-                <a href = "https://www.instagram.com/ryu_fsnz/?hl=ja" class="mr-0 px-2">
-                    <img src = "{{ url_for('static', filename='imgs/instagramlogo.png') }}" width="30" height="30">
-                </a>
-            </li>
-        </ul>
-    </div>
-
+    
     <div class="container profiles">
         <img src="{{ url_for('static', filename='imgs/genya.jpg') }}" width="200" height="200" class="rounded-circle d-block mx-auto mb-3">
         <p>
-            COO<br>
+            CEO<br>
             大橋&nbsp;玄弥
         </p>
         <ul class="list-group list-group-flush rounded">
@@ -42,6 +21,28 @@
             <li class="list-group-item list-group-item-secondary font-weight-bold">
                 「adMado」を日本中へ
                 <a href = "https://www.instagram.com/o_genya84/?hl=ja" class="mr-0 px-2">
+                    <img src = "{{ url_for('static', filename='imgs/instagramlogo.png') }}" width="30" height="30">
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container profiles">
+        <img src="{{ url_for('static', filename='imgs/noskay.jpg') }}" width="200" height="200" class="rounded-circle d-block mx-auto mb-3">
+        <p>
+            COO<br>
+            清田&nbsp;龍之介
+        </p>
+        <ul class="list-group list-group-flush rounded">
+            <li class="list-group-item list-group-item-secondary">
+                Whanganui High School卒
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+                立命館大学情報理工学部<br>情報システムグローバルコース所属
+            </li>
+            <li class="list-group-item list-group-item-secondary font-weight-bold">
+                趣味&nbsp;:&nbsp;アート収集
+                <a href = "https://www.instagram.com/ryu_fsnz/?hl=ja" class="mr-0 px-2">
                     <img src = "{{ url_for('static', filename='imgs/instagramlogo.png') }}" width="30" height="30">
                 </a>
             </li>
