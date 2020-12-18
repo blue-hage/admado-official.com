@@ -54,4 +54,5 @@ def new_client():
   return filename
 
 if __name__ == "__main__":
-  print(select("SELECT file_id FROM test WHERE filename = ?", "about.png"))
+  name = select("SELECT * FROM test WHERE filename = ?", "about.png")
+  print(name["file_id"])
