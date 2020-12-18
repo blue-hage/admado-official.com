@@ -91,7 +91,7 @@ def client_try():
 
   name = sql.new_client(company_id, user_id, filename)
 
-  attach = client.save_file(name, design, company_id)
+  attach = client.save_file(name, design, company_id, user_id)
   if attach == "no file": attach = None
 
   # msg = mail.client_create(email, tel, company_id, user_id, contents, attach)
