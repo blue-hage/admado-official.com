@@ -18,8 +18,9 @@ def save_file(name):
   design = request.files['design']
 
   if design and allowed_file(design.filename):
-
-    design.save(os.path.join(FILES_DIR, name))
-    return FILES_DIR + '/' + name
+    picId = 
+    filename = picId + "_" + name
+    design.save(os.path.join(FILES_DIR, filename))
+    return FILES_DIR + '/' + filename
       
   

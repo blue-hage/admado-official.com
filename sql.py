@@ -52,3 +52,6 @@ def new_client():
   conn.commit()
   conn.close()
   return filename
+
+if __name__ == "__main__":
+  print(select("SELECT file_id FROM test WHERE filename = ?", "about.png"))
