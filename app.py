@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request
 import smtplib, mail, client, sql
 from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "blublunomi_gomugomu"
@@ -84,25 +85,24 @@ def client_try():
 
   if request.files:
     design = request.files['design']
-    filename = design.filename
+    filename = secure_filename(design.filename)
   else:
     design = None
-    filename = "No"
+    filename = "無し"
 
   file_id = str(sql.exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
+  attach = client.save_file(filename, design, file_id)
+  # if attach == "no file": attach = None
 
-  attach = client.save_file(filename, design, company_id, user_id, file_id)
-  if attach == "no file": attach = None
+  msg = mail.client_create(email, tel, company_id, user_id, contents, design, filename)
+  host = HOST
+  port = PORT
 
-  # msg = mail.client_create(email, tel, company_id, user_id, contents, attach)
-  # host = HOST
-  # port = PORT
-
-  # smtp = smtplib.SMTP_SSL(host, port)
-  # smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
-  # smtp.send_message(msg[0])
-  # smtp.send_message(msg[1])
-  # smtp.quit()
+  smtp = smtplib.SMTP_SSL(host, port)
+  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
+  smtp.send_message(msg[0])
+  smtp.send_message(msg[1])
+  smtp.quit()
   return messsage("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", "/", "ホームに戻る")
 
 

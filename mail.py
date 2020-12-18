@@ -1,11 +1,8 @@
 #!/usr/local/bin/python3
-
 from flask import request
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
-import os
-from client import allowed_file
 
 USER_NAME_CONTACT = "contact@admado-official.com"
 USER_NAME_CLIENT = "client@admado-official.com"
@@ -50,14 +47,7 @@ def contact_create(email, name, contents):
   return msg
 
 
-def client_create(email, tel, company_id, user_id, contents, attachment):
-  if attachment is not None:
-    design = request.files['design']
-    filename = design.filename
-  else:
-    filename = "無し"
-
-
+def client_create(email, tel, company_id, user_id, contents, attachment, filename):
   body1 = """
   {0}様
 
