@@ -1,8 +1,9 @@
 #!/usr/local/bin/python3
 
-from flask import Flask, render_template
-import smtplib, mail, client
+from flask import Flask, render_template, request
+import smtplib, mail, client, sql
 from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "blublunomi_gomugomu"
@@ -53,7 +54,11 @@ def contact_page():
 
 @app.route("/contact/try", methods=["POST"])
 def contact_try():
-  msg = mail.contact_create()
+  email = request.form.get("email")
+  name = request.form.get("name")
+  contents = request.form.get("contents")
+
+  msg = mail.contact_create(email, name, contents)
   host = HOST
   port = PORT
 
@@ -62,7 +67,7 @@ def contact_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
+  return messsage("お問い合わせ完了。確認メールをご確認ください。", "/", "ホームに戻る")
 
 
 # client application page
@@ -72,12 +77,24 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  attach = client.save_file()
-  if attach == "ok":
-    attach = None
-  # elif attach is False:
-  #   return render_template("msg.html", message="デザインは、JPG、PNG、JPEGファイルでお願い致します。", at="/contact", text="フォームに戻る")
-  msg = mail.client_create(attach)
+  email = request.form.get("email")
+  tel = request.form.get("tel")
+  company_id = request.form.get("company_id")
+  user_id = request.form.get("user_id")
+  contents = request.form.get("contents")
+
+  if request.files['design']:
+    design = request.files['design']
+    filename = secure_filename(design.filename)
+  else:
+    design = None
+    filename = "無し"
+
+  file_id = str(sql.exec('INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
+
+  attach = client.save_file(filename, design, file_id)
+
+  msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
   host = HOST
   port = PORT
 
@@ -86,7 +103,7 @@ def client_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
+  return messsage("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", "/", "ホームに戻る")
 
 
 # policies
@@ -101,6 +118,9 @@ def policy_pri():
 @app.route("/policy_ad")
 def policy_ad():
   return render_template("policy_ad.html")
+
+def messsage(msg, link, text):
+  return render_template("msg.html", message=msg, at=link, text=text)
 
 
 if __name__ == "__main__":

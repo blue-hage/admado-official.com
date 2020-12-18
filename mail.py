@@ -1,11 +1,8 @@
 #!/usr/local/bin/python3
-
 from flask import request
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
-import os
-from client import allowed_file
 
 USER_NAME_CONTACT = "contact@admado-official.com"
 USER_NAME_CLIENT = "client@admado-official.com"
@@ -14,22 +11,21 @@ PASSWORD_CLIENT = "20201203"
 ADMADO_RECIPIENT_CONTACT = "contact-receiver@admado-official.com"
 ADMADO_RECIPIENT_CLIENT = "client-receiver@admado-official.com"
 
-def contact_create():
-  email = request.form.get("email")
-  name = request.form.get("name")
-  contents = request.form.get("contents")
-
+def contact_create(email, name, contents):
   body1 = """
-  当サイトをご覧いただきありがとうございます。
-  お問い合わせを承りました。
-  ご返信に多少のお時間をいただく事があります、ご理解の方の方をよろしくお願い致します。
+  {0}様
 
-  * こちらは自動返信用メールとなっております。
+  当サイトをご覧頂きありがとうございます。
+  お問い合わせを承りました。
+  返答に多少のお時間を頂く事がございます。
+  ご理解・ご協力をよろしくお願い致します。
+
+  * こちらは自動返信メールとなっております。ご返信はお控え下さい。
 
   (お問い合わせ内容)
-  お名前: {0}様
-  メールアドレス: {1}
-  内容: {2}
+  お名前:　{0}様
+  メールアドレス:　{1}
+  お問い合わせ内容:　{2}
   """.format(name, email, contents)
 
   msg1 = MIMEText(body1)
@@ -38,9 +34,9 @@ def contact_create():
   msg1["To"] = email
 
   body2 = """
-  お名前: {0}
-  メールアドレス: {1}
-  お問い合わせ内容: {2}
+  お名前:　{0}
+  メールアドレス:　{1}
+  お問い合わせ内容:　{2}
   """.format(name, email, contents)
 
   msg2 = MIMEText(body2)
@@ -52,35 +48,25 @@ def contact_create():
   return msg
 
 
-def client_create(attachment):
-  email = request.form.get("email")
-  tel = request.form.get("tel")
-  name = request.form.get("name")
-  contents = request.form.get("contents")
-
-  if attachment is not None:
-    design = request.files['design']
-    filename = design.filename
-  else:
-    filename = "無し"
-
-
+def client_create(email, tel, company, user, contents, attachment, filename, real):
   body1 = """
   {0}様
 
-  当サイトをご覧いただきありがとうございます。
+  当サイトをご覧頂きありがとうございます。
   当社サービスでの広告掲載申込を承りました。
-  ご返信に多少のお時間をいただく事があります、ご理解の方の方をよろしくお願い致します。
+  返信に多少のお時間を頂く事がございます。
+  ご理解・ご協力をよろしくお願い致します。
 
-  * こちらは自動返信用メールとなっております。
+  * こちらは自動返信メールとなっております。ご返信はお控え下さい。
 
   (受付内容)
-  お名前: {0}
-  メールアドレス: {1}
-  電話番号: {2}
-  デザインファイル: {3}
-  その他: {4}
-  """.format(name, email, tel, filename, contents)
+  貴社名(個人名):　{0}様
+  ご担当者様:　{1}様
+  メールアドレス:　{2}
+  電話番号:　{3}
+  デザインファイル:　{4}
+  その他:　{5}
+  """.format(company, user, email, tel, filename, contents)
 
   msg1 = MIMEText(body1)
   msg1["Subject"] = "広告掲載応募"
@@ -88,12 +74,13 @@ def client_create(attachment):
   msg1["To"] = email
 
   body2 = """
-  お名前: {0}
-  メールアドレス: {1}
-  電話番号: {2}
-  デザインファイル: {3}
-  その他: {4}
-  """.format(name, email, tel, filename, contents)
+  企業名(個人名):　{0}
+  ご担当者様:　{1}
+  メールアドレス:　{2}
+  電話番号:　{3}
+  デザインファイル:　{4}
+  その他:　{5}
+  """.format(company, user, email, tel, real, contents)
 
   msg2 = MIMEMultipart()
   msg2["Subject"] = "広告掲載申込"

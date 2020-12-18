@@ -3,14 +3,15 @@
 {% block head %}サービス内容{% endblock %}
 
 {% block content %}
-<small>* クライアント様を除くサービスはスマートフォンアプリ内のみ</small>
+<small>※スマートフォンアプリのリリースは<span class="font-weight-bold">3月頃</span>を予定しています。</small>
+<small>※クライアント様を除くサービスはスマートフォンアプリ内のみ</small>
 <div class="container">
-  <div class="accordion" id="services">
+  <div class="accordion mb-5" id="services">
     <div class="card">
       <div class="card-header" id="headingGeneral">
         <h2 class="mb-0">
           <button class="btn btn-light btn-block text-secondary" type="button" data-toggle="collapse" data-target="#general" aria-expanded="{{ aria_ge }}" aria-controls="general">
-            一般ユーザーの方々
+            一般ユーザーの皆様
           </button>
         </h2>
       </div>
@@ -18,7 +19,7 @@
       <div id="general" class="collapse {{ show_ge }}" aria-labelledby="headingGeneral" data-parent="#services">
         <div class="card-body bg-secondary">
   
-          <h2 class="mb-5" name="general">利用までの流れ</h2>
+          <h2 class="mb-5" name="general">ご利用の流れ</h2>
   
           <div class="d-flex flex-column flex-md-row justify-content-center container mb-5">
             <div class="flex-fill border border-light rounded-pill mx-md-5">会員登録</div>
@@ -32,15 +33,15 @@
             <p>
               adMadoでは、皆様からの評価システムを採用しております。<br><br>
   
-              我々のアプリケーション上での位置情報システムを利用し広告を掲載している車両と一定の距離内ですれ違うと初めてその車に対して評価を行えます。<br><br>
+              adMadoのアプリケーション上での位置情報システムを利用し、広告を掲載している車両と一定の距離内ですれ違うと初めてその車に対して評価を行うことができます。<br><br>
   
-              この評価システムは、広告掲示に対する不正を防止するためでもありながら皆様の広告への注目度向上にも繋がるシステムであると考えております。<br><br>
+              この評価システムは、広告掲示に対する不正を防止するためでもありながら、皆様の広告への注目度向上にも繋がるシステムであると考えております。<br><br>
               
-              皆様から頂いた評価は、1評価ごとに感謝料をお支払いします。
+              <span class="font-weight-bold">皆様から頂いた評価は、1評価ごとに感謝料をお支払いします。</span>
             </p>
   
-            <small>* 評価システム上、一般ユーザーの皆様の位置情報も使用させていただく必要がございます。<br></small>
-            <small>* 1つの評価に対する感謝料は、変動する可能性がございます。</small>
+            <small>※評価システム上、一般ユーザーの皆様の位置情報も使用させていただく必要がございます。<br></small>
+            <small>※1つの評価に対する感謝料は、変動する可能性がございます。</small>
           </div>
   
         </div>
@@ -59,7 +60,7 @@
       <div id="driver" class="collapse {{ show_dri }}" aria-labelledby="headingDriver" data-parent="#services">
         <div class="card-body bg-secondary">
   
-          <h2 class="mb-5" name="driver">利用までの流れ</h2>
+          <h2 class="mb-5" name="driver">ご利用の流れ</h2>
   
           <div class="d-flex flex-column flex-md-row justify-content-center container mb-5">
             <div class="flex-fill border border-light rounded-pill mx-md-3">会員登録</div>
@@ -75,12 +76,17 @@
           
           <div class="container">
             <p>
-              ドライバーの皆様は、アプリ上から希望の広告を選び、申請していただきます。<br><br>
+              ドライバーの皆様はアプリ上から希望の広告を選び、申請していただきます。<br><br>
 
               その後、届いた広告を車に貼って走行していただくことで、走行状況に応じた広告収入を得ることができます。<br><br>
 
-              広告のクライアント様により最低の走行時間を指定していただくため、それ以上走ることが条件となります。
+              <span class="font-weight-bold">クライアント（広告主）様により最低の走行時間を指定していただくため、それ以上走ることが最低条件となります。</span><br><br>
+
+              最低走行時間を超えますと、広告ごとに設定されている時給により広告費が計算されます。<br><br>
+
+              また、一般のユーザーの皆様からの評価数も広告費に含まれるため、多くの方々からのインプレッションを集めることで広告費に加算されていきます。<br><br>
             </p>
+            <small>※クライアント（広告主）様の要望により最高走行時間を設定する場合がございます。</small>
           </div>
         </div>
       </div>
@@ -98,7 +104,7 @@
       <div id="client" class="collapse {{ show_cli }}" aria-labelledby="headingClient" data-parent="#services">
         <div class="card-body bg-secondary">
   
-          <h2 class="mb-5" name="client">利用までの流れ</h2>
+          <h2 class="mb-5" name="client">ご利用の流れ</h2>
           <div class="d-flex flex-column flex-md-row justify-content-center container mb-5">
             <div class="flex-fill border border-light rounded-pill mx-md-3">当サイトより申込み</div>
             <span class="d-md-none">&or;</span><span class="d-none d-md-inline">&gt;</span>
@@ -119,14 +125,14 @@
               我々の広告費制度は<br><br>
   
               <span class="font-weight-bold">
-                契約費（保証）<br>
+                最低走行時間に伴う広告費<br>
                 ＋<br>
-                広告費の金額<br>
+                広告掲載に対する時給<br>
                 ＋<br>
                 評価数<br><br>
               </span>
   
-              による金額となっております。<br><br>
+              により、金額が決定いたします。<br><br>
   
               広告費に関しましては各クライアント様との話し合いにて決定させて頂きます。<br>
               また、様々な条件を追加することも可能です。<br><br>
@@ -141,7 +147,9 @@
             </ul>
     
             <p class="mb-5">
-              クライアントの皆様からは、出来高によって広告費をいただくシステムとなっております。
+              <span class="font-weight-bold">クライアントの皆様からは、契約期間終了と同時に確定した金額をお支払いいただきます。</span><br><br>
+
+              予算などの条件より、各クライアント（広告主）様に合ったプランをご提案させていただくことも可能です。
             </p>
           </div>
           <a href="/client">
@@ -150,6 +158,15 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
+    <h2 class="mb-5">対応予定地域</h2>
+    <p>
+      車両広告物条例等の関係で<span class="font-weight-bold">下記の地域以外に車両の本拠地があるドライバー様に</span>現在対応予定です。<br><br>
+  
+      茨城、栃木、群馬、埼玉、東京、千葉県(千葉市)、神奈川、愛知（名古屋市）、大阪府(大阪市、堺市)、兵庫、広島、熊本、宮崎、鹿児島
+    </p>
+    <small>※これらの地域は順次対応予定です。</small>
   </div>
 </div>
 {% endblock %}

@@ -1,8 +1,5 @@
 #!/usr/local/bin/python3
-
 import os
-from flask import render_template, request
-from werkzeug.utils import secure_filename
 
 FILES_DIR = './files'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -10,17 +7,11 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def save_file():
-  if not request.files:
-    return "ok"
-  design = request.files['design']
-
-  # if allowed_file(design.filename) is False:
-  #   return False
+def save_file(name, design, file_id):
+  if name == "無し":
+    return [None, "無し"]
 
   if design and allowed_file(design.filename):
-    filename = secure_filename(design.filename)
+    filename = file_id + "_" + name
     design.save(os.path.join(FILES_DIR, filename))
-    return FILES_DIR + '/' + filename
-      
-  
+    return [FILES_DIR + '/' + filename, filename]
