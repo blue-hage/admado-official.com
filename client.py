@@ -2,7 +2,7 @@
 
 import os
 from flask import request
-from werkzeug.utils import secure_filename
+# from werkzeug.utils import secure_filename
 import sql
 
 FILES_DIR = './files'
@@ -18,7 +18,7 @@ def save_file():
   design = request.files['design']
   company_id = request.form.get("company_id", "")
   user_id = request.form.get("user_id", "")
-  origin = secure_filename(request.form.get("design", ""))
+  origin = request.form.get("design", "")
 
   if design and allowed_file(origin):
     head = sql.new_client(company_id, user_id, origin)
