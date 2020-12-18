@@ -43,7 +43,3 @@ def new_client(company_id, user_id, filename):
   conn.commit()
   conn.close()
   return filename
-
-if __name__ == "__main__":
-  name = select('SELECT * FROM test WHERE filename=%s', 'forclient.png')
-  print(name[0][0])

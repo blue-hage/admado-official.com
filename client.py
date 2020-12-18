@@ -22,3 +22,7 @@ def save_file(name, design, company_id):
     # filename = name
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename
+
+if __name__ == "__main__":
+  name = sql.select('SELECT * FROM test WHERE filename=%s', 'forclient.png')
+  print(name[0][0])
