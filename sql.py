@@ -38,8 +38,9 @@ def new_client(company_id, user_id, filename):
   sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
   val = (company_id, user_id, filename)
   mycursor.execute(sql, val)
-  a = mycursor.lastrowid
   mycursor.close()
   conn.commit()
   conn.close()
-  return a
+
+if __name__ == "__main__":
+  new_client("admado", "aho", "about.png")
