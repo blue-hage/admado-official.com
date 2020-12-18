@@ -33,16 +33,7 @@ def select(sql, *args):
   c.execute(sql, args)
   return c.fetchall()
 
-def new_client():
-  company_id = request.form.get("company_id")
-  user_id = request.form.get("user_id")
-
-  if request.files:
-    design = request.files['design']
-    filename = design.filename
-  else:
-    filename = "no"
-
+def new_client(company_id, user_id, filename):
   conn = mysql.connector.connect(**config)
   mycursor = conn.cursor()
   sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
@@ -52,7 +43,3 @@ def new_client():
   conn.commit()
   conn.close()
   return filename
-
-if __name__ == "__main__":
-  name = select('SELECT * FROM test WHERE filename=%s', 'about.png')
-  print(name)

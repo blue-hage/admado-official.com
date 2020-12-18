@@ -11,15 +11,13 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def save_file(name):
-  if name == "no":
+def save_file(name, design):
+  if name == "No":
     return "no file"
 
-  design = request.files['design']
-
   if design and allowed_file(design.filename):
-    picId = 
-    filename = picId + "_" + name
+    picId = sql.select('SELECT * FROM test WHERE filename=%s', name)
+    filename = picId[0] + "_" + name
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename
       

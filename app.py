@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import smtplib, mail, client, sql
 from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
 
@@ -53,7 +53,11 @@ def contact_page():
 
 @app.route("/contact/try", methods=["POST"])
 def contact_try():
-  msg = mail.contact_create()
+  email = request.form.get("email")
+  name = request.form.get("name")
+  contents = request.form.get("contents")
+
+  msg = mail.contact_create(email, name, contents)
   host = HOST
   port = PORT
 
@@ -72,12 +76,25 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  name = sql.new_client()
+  email = request.form.get("email")
+  tel = request.form.get("tel")
+  company_id = request.form.get("company_id")
+  user_id = request.form.get("user_id")
+  contents = request.form.get("contents")
 
-  attach = client.save_file(name)
+  if request.files:
+    design = request.files['design']
+    filename = design.filename
+  else:
+    design = None
+    filename = "No"
+
+  name = sql.new_client(company_id, user_id, filename)
+
+  attach = client.save_file(name, design)
   if attach == "no file": attach = None
 
-  # msg = mail.client_create(attach)
+  # msg = mail.client_create(email, tel, company_id, user_id, contents, attach)
   # host = HOST
   # port = PORT
 
