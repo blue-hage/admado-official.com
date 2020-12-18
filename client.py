@@ -26,5 +26,5 @@ def save_file(name, design, company_id):
   if __name__ == "__main__":
     name = "forclient.png"
     company_id = "apple"
-    picId = sql.select('SELECT * FROM test WHERE filename = %s', name)
+    picId = sql.select('SELECT * FROM test WHERE filename = %s', "forclient.png")
     print(picId)
