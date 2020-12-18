@@ -17,9 +17,14 @@ def save_file(name, design, company_id):
 
   if design and allowed_file(design.filename):
     picId = sql.select('SELECT * FROM test WHERE filename = %s AND company_id = %s', name, company_id)
+    print(picId[0])
     filename = picId[0] + "_" + name
     # filename = name
     design.save(os.path.join(FILES_DIR, filename))
     return FILES_DIR + '/' + filename
       
-  
+  if __name__ == "__main__":
+    name = "aboutus.png"
+    company_id = "apple"
+    picId = sql.select('SELECT * FROM test WHERE filename = %s AND company_id = %s', name, company_id)
+    print(picId[0])
