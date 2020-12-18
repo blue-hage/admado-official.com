@@ -34,12 +34,13 @@ def select(sql, *args):
   return c.fetchall()
 
 def new_client(company_id, user_id, filename):
-  conn = mysql.connector.connect(**config)
-  mycursor = conn.cursor()
-  sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
-  val = (company_id, user_id, filename)
-  mycursor.execute(sql, val)
-  mycursor.close()
-  conn.commit()
-  conn.close()
-  return filename
+  s = exec('INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)', company_id, user_id, filename)
+  # conn = mysql.connector.connect(**config)
+  # mycursor = conn.cursor()
+  # sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
+  # val = (company_id, user_id, filename)
+  # mycursor.execute(sql, val)
+  # mycursor.close()
+  # conn.commit()
+  # conn.close()
+  return str(s)
