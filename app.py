@@ -88,7 +88,7 @@ def client_try():
     filename = secure_filename(design.filename)
   else:
     design = None
-    filename = "No"
+    filename = "無し"
 
   file_id = str(sql.exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
 
