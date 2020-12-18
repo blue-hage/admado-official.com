@@ -55,4 +55,4 @@ def new_client():
 
 if __name__ == "__main__":
   name = select('SELECT * FROM test WHERE filename=%s', 'about.png')
-  print(name['file_id'])
+  print(name)
