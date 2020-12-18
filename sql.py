@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 import mysql.connector
+from flask import request
 
 config = {
   'host':'localhost',
@@ -32,15 +33,17 @@ def select(sql, *args):
   c.execute(sql, args)
   return c.fetchall()
 
-def new_client(company_id, user_id, filename):
+def new_client():
+  company_id = request.form.get("company_id")
+  user_id = request.form.get("user_id")
+  origin = request.form.get("design")
+
   conn = mysql.connector.connect(**config)
   mycursor = conn.cursor()
   sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
-  val = (company_id, user_id, filename)
+  val = (company_id, user_id, origin)
   mycursor.execute(sql, val)
   mycursor.close()
   conn.commit()
   conn.close()
-
-if __name__ == "__main__":
-  new_client("admado", "aho", "about.png")
+  return origin

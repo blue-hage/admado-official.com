@@ -72,7 +72,9 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  attach = client.save_file()
+  name = sql.new_client()
+
+  attach = client.save_file(name)
   if attach == "no file": attach = None
 
   # msg = mail.client_create(attach)
