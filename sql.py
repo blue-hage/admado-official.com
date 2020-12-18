@@ -36,14 +36,14 @@ def select(sql, *args):
 def new_client():
   company_id = request.form.get("company_id")
   user_id = request.form.get("user_id")
-  origin = request.form.get("design")
+  design = request.files['design']
 
   conn = mysql.connector.connect(**config)
   mycursor = conn.cursor()
   sql = 'INSERT INTO test (file_id, company_id, user_id, filename, created_at) VALUES (NULL, %s, %s, %s, CURRENT_TIMESTAMP)'
-  val = (company_id, user_id, origin)
+  val = (company_id, user_id, design.filename)
   mycursor.execute(sql, val)
   mycursor.close()
   conn.commit()
   conn.close()
-  return origin
+  return design.filename
