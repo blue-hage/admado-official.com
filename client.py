@@ -24,5 +24,5 @@ def save_file(name, design, company_id):
     return FILES_DIR + '/' + filename
 
 if __name__ == "__main__":
-  name = sql.select('SELECT * FROM test WHERE filename=%s', 'forclient.png')
+  name = sql.select('SELECT * FROM test WHERE filename=%s', 'aboutus.png', "aaaaa")
   print(name[0][0])
