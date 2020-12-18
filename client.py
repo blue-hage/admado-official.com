@@ -12,10 +12,10 @@ def allowed_file(filename):
   return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def save_file(name):
-  design = request.files['design']
-
-  if not request.files:
+  if name == "no":
     return "no file"
+
+  design = request.files['design']
 
   if design and allowed_file(design.filename):
 
