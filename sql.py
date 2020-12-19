@@ -38,7 +38,7 @@ if __name__ == "__main__":
   company_id = "あいあい"
   user_id = "おいおい"
   filename = "about.png"
-  exec('INSERT INTO test (company_id, user_id, filename) VALUES (?, ?, ?)', company_id, user_id, filename)
+  exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename)
   clients = select("SELECT * FROM test")
   for row in clients:
     print("file_id =", row[0])
