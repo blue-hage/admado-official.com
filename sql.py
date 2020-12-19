@@ -33,10 +33,9 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', "あああ", "ああああ", "ablut.png")
-  # a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
-  # print(a[0][0])
-  # print(a[0][1])
-  # print(a[0][2])
-  # print(a[0][3])
-  # print(a[0][4])
+  a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
+  print(a[0][0])
+  print(a[0][1].encode('ascii'))
+  print(a[0][2].encode('ascii'))
+  print(a[0][3])
+  print(a[0][4])
