@@ -7,8 +7,8 @@ def is_login():
   return 'login' in session
 
 def try_login(form):
-  user = form.get("user_id", "")
-  password = form.get("password", "")
+  user = form.get("user_id")
+  password = form.get("password")
 
   correct = sql.select("SELECT * FROM admin WHERE user_id = %s", user)
   corr_user = correct[0][1]
