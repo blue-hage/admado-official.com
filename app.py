@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
-
 from flask import Flask, render_template, request, redirect
-import smtplib, mail, client, sql
+import smtplib, mail, client, admin, sql
 from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
 from werkzeug.utils import secure_filename
 
@@ -68,7 +67,7 @@ def contact_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return messsage("お問い合わせ完了。確認メールをご確認ください。", "/", "ホームに戻る")
+  return redirect("/contact/finished")
 
 
 # client application page
@@ -104,7 +103,7 @@ def client_try():
   smtp.send_message(msg[0])
   smtp.send_message(msg[1])
   smtp.quit()
-  return messsage("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", "/", "ホームに戻る")
+  return redirect("/client/finished")
 
 
 # policies
@@ -120,15 +119,35 @@ def policy_pri():
 def policy_ad():
   return render_template("policy_ad.html")
 
-def messsage(msg, link, text):
-  return render_template("msg.html", message=msg, at=link, text=text)
+
+# message pages
+@app.route("/contact/finished")
+def contact_done():
+  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
+
+@app.route("/client/finished")
+def client_done():
+  return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
 
 
+# admin page
 @app.route("/admin/client/list")
 def admin_list():
   if request.args.get("password", "") !=  MASTER_PASS:
     return redirect('/')
   return render_template("admin_login.html")
+
+@app.route("/admin/client/list/try")
+def admin_login():
+  ok = admin.try_login(request.form)
+  if not ok: return redirect("/")
+  return redirect("/admin/client/list/secret")
+
+@app.route("/admin/client/list/secret")
+@admin.login_required
+def admin_client():
+  clients = sql.select("SELECT * FROM test")
+  return render_template("client_list.html", clients=clients)
 
 if __name__ == "__main__":
   app.run(debug=True)

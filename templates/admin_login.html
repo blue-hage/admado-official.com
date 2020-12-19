@@ -3,8 +3,8 @@
 {% block head %}admin{% endblock %}
 
 {% block content %}
-<div class="container mb-5">
-  <form action="/admin_login/try" method="POST" enctype="multipart/form-data">
+<div class="container msg">
+  <form action="/admin/client/list/try" method="POST" enctype="multipart/form-data">
       <div class="form-group col-sm-6 mx-auto">
           <label for="user_id">user_id</label>
           <input id="user_id" type="text" name="user_id" class="form-control">

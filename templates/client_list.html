@@ -1,0 +1,24 @@
+{% extends "layout_pages.html" %}
+
+{% block head %}clients{% endblock %}
+
+{% block content %}
+<div class="container msg">
+  <table>
+    <tr>
+      <th>file_id</th>
+      <th>company_id</th>
+      <th>user_id</th>
+      <th>filename</th>
+      <th>created_at</th>
+    </tr>
+    {% for r in len({ clients }) - 1 %}
+      <tr>
+        {% for c in len({ clients[r] }) - 1 %}
+          <td>{ clients[r][c] }</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
