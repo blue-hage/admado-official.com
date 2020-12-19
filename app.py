@@ -140,11 +140,11 @@ def admin_list():
 @app.route("/admin/client/list/try", methods=['POST'])
 def admin_login():
   ok = admin.try_login(request.form)
-  if not ok: return redirect("/")
+  if not ok: return redirect("/admin/client/list")
   return redirect("/admin/client/list/secret")
 
 @app.route("/admin/client/list/secret")
-@admin.login_required
+# @admin.login_required
 def admin_client():
   # clients = sql.select("SELECT * FROM test")
   return render_template("client_list.html")
