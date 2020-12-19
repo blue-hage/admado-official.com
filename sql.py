@@ -1,14 +1,13 @@
 #!/usr/local/bin/python3
 import mysql.connector
-import sys, io
-
-sys.stdout.reconfigure(encoding='utf-8')
 
 config = {
   'host':'localhost',
   'user':'bluroom_client',
   'password':'20201213',
-  'database':'bluroom_client'
+  'database':'bluroom_client', 
+  'use_unicode':True,
+  'charset':'utf8'
 }
 
 def open_db():
@@ -36,7 +35,10 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  exec("INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)", "あああ", "ああああ", "ablut.png")
+  company_id = "あああ".encode('utf-8')
+  user_id = "ああああ".encode('utf-8')
+  filename = "about.png"
+  exec("INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)", company_id, user_id, filename)
   a = select("SELECT * FROM test WHERE company_id = %s", "あああ")
   print(a[0][0])
   print(a[0][1])
