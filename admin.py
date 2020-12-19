@@ -18,7 +18,7 @@ def try_login(form):
     return False
   if password != corr_pass:
     return False
-    
+
   session['login'] = user
   return True
 
@@ -29,3 +29,10 @@ def login_required(func):
             return redirect('/')
         return func(*args, **kwargs)
     return wrapper
+
+if __name__ == "__main__":
+  user = "blue"
+  correct = sql.select("SELECT * FROM admin WHERE user_id = %s", user)
+  corr_user = correct[0][1]
+  corr_pass = correct[0][2]
+  print(corr_user, corr_pass)
