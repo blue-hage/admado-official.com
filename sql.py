@@ -7,7 +7,7 @@ config = {
   'password':'20201213',
   'database':'bluroom_client',
   'use_unicode': True,
-  'charset' : 'utf8'
+  'charset' : 'utf-8'
 }
 
 def open_db():
