@@ -144,7 +144,7 @@ def admin_login():
   return redirect("/admin/client/list/secret")
 
 @app.route("/admin/client/list/secret")
-# @admin.login_required
+@admin.login_required
 def admin_client():
   # clients = sql.select("SELECT * FROM test")
   return render_template("client_list.html")
