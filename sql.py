@@ -22,6 +22,7 @@ def dict_factory(cursor, row):
 def exec(sql, *args):
   db = open_db()
   c = db.cursor()
+  c.execute("SET NAMES utf8")
   c.execute(sql, args)
   db.commit()
   return c.lastrowid
@@ -29,6 +30,7 @@ def exec(sql, *args):
 def select(sql, *args):
   db = open_db()
   c = db.cursor()
+  c.execute("SET NAMES utf8")
   c.execute(sql, args)
   return c.fetchall()
 
