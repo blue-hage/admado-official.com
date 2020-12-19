@@ -12,13 +12,13 @@
       <th>filename</th>
       <th>created_at</th>
     </tr>
-    {% for r in len({ clients }) - 1 %}
+    <!-- {% for r in len({ client_list }) - 1 %}
       <tr>
-        {% for c in len({ clients[r] }) - 1 %}
-          <td>{ clients[r][c] }</td>
+        {% for c in len({ client_list[r] }) - 1 %}
+          <td>{ client_list[r][c] }</td>
         {% endfor %}
       </tr>
-    {% endfor %}
+    {% endfor %} -->
   </table>
 </div>
 {% endblock %}
