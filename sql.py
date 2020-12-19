@@ -1,7 +1,8 @@
 #!/usr/local/bin/python3
-# coding: UTF-8
-
 import mysql.connector
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8')
 
 config = {
   'host':'localhost',
