@@ -33,7 +33,7 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
+  a = select("SELECT * FROM test WHERE company_id = %s", "あああ")
   print(a[0][0])
   print(a[0][1].encode('ascii'))
   print(a[0][2].encode('ascii'))
