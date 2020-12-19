@@ -6,7 +6,7 @@ from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = "blublunomi_gomugomu"
+app.secret_key = "fkldsjt42u815dsfv"
 
 HOST = "om1002.coreserver.jp"
 PORT = 465
