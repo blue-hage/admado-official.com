@@ -6,7 +6,7 @@ config = {
   'user':'bluroom_client',
   'password':'20201213',
   'database':'bluroom_client',
-  'charset':'CP932'
+  'charset':'cp932'
 }
 
 def open_db():
