@@ -137,7 +137,7 @@ def admin_list():
     return redirect('/')
   return render_template("admin_login.html")
 
-@app.route("/admin/client/list/try")
+@app.route("/admin/client/list/try", methods=['POST'])
 def admin_login():
   ok = admin.try_login(request.form)
   if not ok: return redirect("/")
