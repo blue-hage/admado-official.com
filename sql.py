@@ -33,15 +33,15 @@ def select(sql, *args):
   c.execute(sql, args)
   return c.fetchall()
 
-if __name__ == "__main__":
-  company_id = "あいあい".encode().decode()
-  user_id = "おいおい".encode().decode()
-  filename = "about.png"
-  exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename)
-  clients = select("SELECT * FROM test")
-  for row in clients:
-    print("file_id =", row[0])
-    print("company_id =", row[1])
-    print("user_id =", row[2])
-    print("filename =", row[3])
-    print("created_at =", row[4])
+# if __name__ == "__main__":
+#   company_id = "あいあい".encode().decode()
+#   user_id = "おいおい".encode().decode()
+#   filename = "about.png"
+#   exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename)
+#   clients = select("SELECT * FROM test")
+#   for row in clients:
+#     print("file_id =", row[0])
+#     print("company_id =", row[1])
+#     print("user_id =", row[2])
+#     print("filename =", row[3])
+#     print("created_at =", row[4])
