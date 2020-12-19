@@ -1,4 +1,6 @@
 #!/usr/local/bin/python3
+# coding: UTF-8
+
 import mysql.connector
 
 config = {
@@ -33,6 +35,7 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
+  exec("INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)", "あああ", "ああああ", "ablut.png")
   a = select("SELECT * FROM test WHERE company_id = %s", "あああ")
   print(a[0][0])
   print(str(a[0][1]))
