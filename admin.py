@@ -26,7 +26,7 @@ def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if not is_login():
-            return redirect('/')
+            return redirect('/admin/client/list')
         return func(*args, **kwargs)
     return wrapper
 
