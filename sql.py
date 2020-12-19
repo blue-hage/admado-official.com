@@ -5,8 +5,7 @@ config = {
   'host':'localhost',
   'user':'bluroom_client',
   'password':'20201213',
-  'database':'bluroom_client',
-  'use_unicode': True
+  'database':'bluroom_client'
 }
 
 def open_db():
@@ -34,6 +33,9 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
+  import sys
+  print(sys.getdefaultencoding())
+  print(sys.stdout.encoding)
   company_id = "あいあい"
   user_id = "おいおい"
   filename = "about.png"
