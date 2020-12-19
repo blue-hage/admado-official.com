@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 import mysql.connector
-import sys
+import sys, io
 
 sys.stdout.reconfigure(encoding='utf-8')
 
