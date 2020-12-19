@@ -9,12 +9,16 @@ def is_login():
 def try_login(form):
   user = form.get("user_id", "")
   password = form.get("password", "")
-  if user not in sql.select("SELECT * FROM admin"):
-    return False
+
   correct = sql.select("SELECT * FROM admin WHERE user_id = %s", user)
-  corr_pass = correct[2]
+  corr_user = correct[0][1]
+  corr_pass = correct[0][2]
+
+  if user != corr_user:
+    return False
   if password != corr_pass:
     return False
+    
   session['login'] = user
   return True
 
