@@ -9,7 +9,7 @@ config = {
 }
 
 def open_db():
-  conn = mysql.connector.connect(**config)
+  conn = mysql.connector.connect(**config, use_unicode=True, charset="utf8")
   conn.row_factory = dict_factory
   return conn
 
