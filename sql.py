@@ -1,11 +1,13 @@
 #!/usr/local/bin/python3
 import mysql.connector
+import enco
 
 config = {
   'host':'localhost',
   'user':'bluroom_client',
   'password':'20201213',
-  'database':'bluroom_client'
+  'database':'bluroom_client',
+  'charset':'utf8'
 }
 
 def open_db():
@@ -22,7 +24,6 @@ def dict_factory(cursor, row):
 def exec(sql, *args):
   db = open_db()
   c = db.cursor()
-  c.execute("SET NAMES utf8")
   c.execute(sql, args)
   db.commit()
   return c.lastrowid
@@ -30,14 +31,10 @@ def exec(sql, *args):
 def select(sql, *args):
   db = open_db()
   c = db.cursor()
-  c.execute("SET NAMES utf8")
   c.execute(sql, args)
   return c.fetchall()
 
 if __name__ == "__main__":
-  import sys
-  print(sys.getdefaultencoding())
-  print(sys.stdout.encoding)
   company_id = "あいあい"
   user_id = "おいおい"
   filename = "about.png"
