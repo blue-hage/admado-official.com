@@ -35,5 +35,9 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  a = select("SELECT * FROM test")
-  print(a)
+  a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
+  print(a[0])
+  print(a[1].encode('utf-8'))
+  print(a[2].encode('utf-8'))
+  print(a[3])
+  print(a[4])

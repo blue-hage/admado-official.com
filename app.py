@@ -54,19 +54,19 @@ def contact_page():
 
 @app.route("/contact/try", methods=["POST"])
 def contact_try():
-  # email = request.form.get("email")
-  # name = request.form.get("name")
-  # contents = request.form.get("contents")
+  email = request.form.get("email")
+  name = request.form.get("name")
+  contents = request.form.get("contents")
 
-  # msg = mail.contact_create(email, name, contents)
-  # host = HOST
-  # port = PORT
+  msg = mail.contact_create(email, name, contents)
+  host = HOST
+  port = PORT
 
-  # smtp = smtplib.SMTP_SSL(host, port)
-  # smtp.login(USER_NAME_CONTACT, PASSWORD_CONTACT)
-  # smtp.send_message(msg[0])
-  # smtp.send_message(msg[1])
-  # smtp.quit()
+  smtp = smtplib.SMTP_SSL(host, port)
+  smtp.login(USER_NAME_CONTACT, PASSWORD_CONTACT)
+  smtp.send_message(msg[0])
+  smtp.send_message(msg[1])
+  smtp.quit()
   return redirect("/contact/finished")
 
 
@@ -77,32 +77,32 @@ def client_app_page():
 
 @app.route("/client/try", methods=["POST"])
 def client_try():
-  # email = request.form.get("email")
-  # tel = request.form.get("tel")
-  # company_id = request.form.get("company_id")
-  # user_id = request.form.get("user_id")
-  # contents = request.form.get("contents")
+  email = request.form.get("email")
+  tel = request.form.get("tel")
+  company_id = request.form.get("company_id")
+  user_id = request.form.get("user_id")
+  contents = request.form.get("contents")
 
-  # if request.files['design']:
-  #   design = request.files['design']
-  #   filename = secure_filename(design.filename)
-  # else:
-  #   design = None
-  #   filename = "無し"
+  if request.files['design']:
+    design = request.files['design']
+    filename = secure_filename(design.filename)
+  else:
+    design = None
+    filename = "無し"
 
-  # file_id = str(sql.exec('INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
+  file_id = str(sql.exec('INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
 
-  # attach = client.save_file(filename, design, file_id)
+  attach = client.save_file(filename, design, file_id)
 
-  # msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
-  # host = HOST
-  # port = PORT
+  msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
+  host = HOST
+  port = PORT
 
-  # smtp = smtplib.SMTP_SSL(host, port)
-  # smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
-  # smtp.send_message(msg[0])
-  # smtp.send_message(msg[1])
-  # smtp.quit()
+  smtp = smtplib.SMTP_SSL(host, port)
+  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
+  smtp.send_message(msg[0])
+  smtp.send_message(msg[1])
+  smtp.quit()
   return redirect("/client/finished")
 
 
