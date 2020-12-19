@@ -4,7 +4,7 @@ import sql
 from functools import wraps
 
 def is_login():
-  return 'admin_login' in session
+  return 'login' in session
 
 def try_login(form):
   user = form.get("user_id", "")
@@ -15,13 +15,13 @@ def try_login(form):
   corr_pass = correct[2]
   if password != corr_pass:
     return False
-  session['admin_login'] = user
+  session['login'] = user
   return True
 
 def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if not is_login():
-            return redirect('/login')
+            return redirect('/')
         return func(*args, **kwargs)
     return wrapper
