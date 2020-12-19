@@ -35,13 +35,13 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  company_id = "あああ".encode('utf-8')
-  user_id = "ああああ".encode('utf-8')
-  filename = "about.png"
-  exec("INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)", company_id, user_id, filename)
+  # company_id = "あああ".encode('utf-8')
+  # user_id = "ああああ".encode('utf-8')
+  # filename = "about.png"
+  # exec("INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)", company_id, user_id, filename)
   a = select("SELECT * FROM test WHERE company_id = %s", "あああ")
   print(a[0][0])
-  print(a[0][1])
-  print(a[0][2])
+  print(a[0][1].encode('ascii', 'ignore'))
+  print(a[0][2].encode('ascii', 'ignore'))
   print(a[0][3])
   print(a[0][4])
