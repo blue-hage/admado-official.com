@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import smtplib, mail, client, sql
 from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
 from werkzeug.utils import secure_filename
@@ -10,6 +10,7 @@ app.secret_key = "fkldsjt42u815dsfv"
 
 HOST = "om1002.coreserver.jp"
 PORT = 465
+MASTER_PASS = '20201219_admado3150'
 
 # home page
 @app.route("/")
@@ -122,6 +123,12 @@ def policy_ad():
 def messsage(msg, link, text):
   return render_template("msg.html", message=msg, at=link, text=text)
 
+
+@app.route("/admin/client/list")
+def admin_list():
+  if request.args.get("password", "") !=  MASTER_PASS:
+    return redirect('/')
+  return render_template("admin_login.html")
 
 if __name__ == "__main__":
   app.run(debug=True)
