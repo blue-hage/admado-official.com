@@ -5,8 +5,7 @@ config = {
   'host':'localhost',
   'user':'bluroom_client',
   'password':'20201213',
-  'database':'bluroom_client',
-  'charset':'cp932'
+  'database':'bluroom_client'
 }
 
 def open_db():
@@ -34,9 +33,10 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
-  print(a[0][0])
-  print(a[0][1])
-  print(a[0][2])
-  print(a[0][3])
-  print(a[0][4])
+  exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', "あああ", "ああああ", "ablut.png")
+  # a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
+  # print(a[0][0])
+  # print(a[0][1])
+  # print(a[0][2])
+  # print(a[0][3])
+  # print(a[0][4])
