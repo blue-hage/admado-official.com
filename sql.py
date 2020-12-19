@@ -34,8 +34,8 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  company_id = "あいあい".encode("utf-8")
-  user_id = "おいおい".encode("utf-8")
+  company_id = "あいあい".encode("unicode")
+  user_id = "おいおい".encode("unicode")
   filename = "about.png"
   exec('INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename)
   clients = select("SELECT * FROM test")
