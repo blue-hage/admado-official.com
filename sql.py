@@ -6,7 +6,7 @@ config = {
   'user':'bluroom_client',
   'password':'20201213',
   'database':'bluroom_client',
-  'charset':'utf8'
+  'charset':'CP932'
 }
 
 def open_db():
@@ -36,7 +36,7 @@ def select(sql, *args):
 if __name__ == "__main__":
   a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
   print(a[0][0])
-  print(a[0][1].encode().decode())
-  print(a[0][2].encode().decode())
+  print(a[0][1])
+  print(a[0][2])
   print(a[0][3])
   print(a[0][4])
