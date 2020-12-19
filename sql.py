@@ -37,7 +37,7 @@ def select(sql, *args):
 if __name__ == "__main__":
   a = select("SELECT * FROM test WHERE company_id = %s", "あいあい")
   print(a[0][0])
-  print(a[0][1].encode('utf-8').decode())
-  print(a[0][2].encode('utf-8').decode())
+  print(a[0][1].encode('utf-8').decode('utf-8'))
+  print(a[0][2].encode('utf-8').decode('utf-8'))
   print(a[0][3])
   print(a[0][4])
