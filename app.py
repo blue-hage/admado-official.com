@@ -149,6 +149,8 @@ def admin_client():
   clients = sql.select("SELECT * FROM clients")
   return render_template("client_list.html", client_list=clients)
 
+
+#admin registration
 @app.route("/admin/client/list/register")
 def admin_register():
   if request.args.get("admin_pass", "") != MASTER_PASS:
