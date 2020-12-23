@@ -56,7 +56,7 @@ def contact_try():
   contents = request.form.get("contents")
 
   msg = mail.contact_create(email, name, contents)
-  return redirect("/finished")
+  return redirect("/finished/contact")
 
 
 # client application page
@@ -83,7 +83,7 @@ def client_try():
   attach = client.save_file(filename, design, file_id)
 
   msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
-  return redirect("/finished")
+  return redirect("/finished/client")
 
 
 # policies
@@ -101,9 +101,14 @@ def policy_ad():
 
 
 # message pages
-@app.route("/finished")
-def contact_done():
-  return render_template("msg.html", message="受付完了。確認用メールをご確認ください。", at="/", text="ホームに戻る")
+@app.route("/finished/<page>")
+def message(page):
+  if page == "contact":
+    return render_template("msg.html", message="お問い合わせ完了。確認用メールをご確認ください。", at="/", text="ホームに戻る")
+  elif page == "client":
+    return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
+  else:
+    return render_template("msg.html", message="エラーが発生しました。", at="/", text="ホームに戻る")
 
 
 # admin page
