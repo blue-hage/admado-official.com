@@ -147,7 +147,7 @@ def admin_login():
 @admin.login_required
 def admin_client():
   clients = sql.select("SELECT * FROM test")
-  return render_template("client_list.html", client_list=clients)
+  return render_template("client_list.html")
 
 if __name__ == "__main__":
   app.run(debug=True)
