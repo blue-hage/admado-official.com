@@ -9,7 +9,7 @@ app.secret_key = "fkldsjt42u815dsfv"
 
 HOST = "om1002.coreserver.jp"
 PORT = 465
-MASTER_PASS = '20201219_admado3150'
+MASTER_PASS = "20201219_admado3150"
 
 # home page
 @app.route("/")
@@ -83,14 +83,14 @@ def client_try():
   user_id = request.form.get("user_id")
   contents = request.form.get("contents")
 
-  if request.files['design']:
-    design = request.files['design']
+  if request.files["design"]:
+    design = request.files["design"]
     filename = secure_filename(design.filename)
   else:
     design = None
     filename = "無し"
 
-  file_id = str(sql.exec('INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
+  file_id = str(sql.exec("INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)", company_id, user_id, filename))
 
   attach = client.save_file(filename, design, file_id)
 
@@ -133,11 +133,11 @@ def client_done():
 # admin page
 @app.route("/admin/client/list")
 def admin_list():
-  if request.args.get("password", "") !=  MASTER_PASS:
-    return redirect('/')
+  if request.args.get("admin_pass", "") !=  MASTER_PASS:
+    return redirect("/")
   return render_template("admin_login.html")
 
-@app.route("/admin/client/list/try", methods=['POST'])
+@app.route("/admin/client/list/try", methods=["POST"])
 def admin_login():
   ok = admin.try_login(request.form)
   if not ok: return redirect("/admin/client/list")
@@ -146,8 +146,21 @@ def admin_login():
 @app.route("/admin/client/list/secret")
 @admin.login_required
 def admin_client():
-  clients = sql.select("SELECT * FROM test")
+  clients = sql.select("SELECT * FROM clients")
   return render_template("client_list.html", client_list=clients)
+
+@app.route("/admin/client/list/register")
+def admin_register():
+  if request.args.get("admin_pass", "") != MASTER_PASS:
+    return redirect("/")
+  return render_template("admin_register.html")
+
+@app.route("admin/client/list/register/try")
+def admin_register_try():
+  ok = admin.new_admin(request.form)
+  if not ok: return redirect("/admin/client/list/register")
+  return redirect("admin/client/list/secret")
+
 
 if __name__ == "__main__":
   app.run()
