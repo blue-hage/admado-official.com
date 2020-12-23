@@ -15,7 +15,7 @@
     {% for i in {{ client_list }} %}
       <tr>
         {% for r in range(4) %}
-          <td>{{ client_list[r] }}</td>
+          <td>{{ client_list[i][r] }}</td>
         {% endfor %}
       </tr>
     {% endfor %}
