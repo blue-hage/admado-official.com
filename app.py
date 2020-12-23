@@ -146,7 +146,7 @@ def admin_login():
 @app.route("/admin/client/list/secret")
 @admin.login_required
 def admin_client():
-  clients = sql.exec("SELECT * FROM test")
+  clients = sql.select("SELECT * FROM test")
   return render_template("client_list.html", client_list=clients)
 
 if __name__ == "__main__":
