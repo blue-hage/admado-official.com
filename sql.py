@@ -35,8 +35,8 @@ def select(sql, *args):
   return c.fetchall()
 
 if __name__ == "__main__":
-  company_id = u"あああ"
-  user_id = u"ああああ"
+  company_id = "あああ"
+  user_id = "ああああ"
   filename = "about.png"
   data_id = exec("INSERT INTO test (company_id, user_id, filename) VALUES (%s, %s, %s)", company_id, user_id, filename)
   a = select("SELECT * FROM test WHERE file_id = %s", data_id)
