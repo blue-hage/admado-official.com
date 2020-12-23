@@ -15,3 +15,5 @@ def save_file(name, design, file_id):
     filename = file_id + "_" + name
     design.save(os.path.join(FILES_DIR, filename))
     return [FILES_DIR + '/' + filename, filename]
+  else:
+    return [None, "無し"]
