@@ -10,7 +10,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 1000px;
+  max-height: 1000px;
 }
 
 .title{
@@ -39,5 +39,5 @@
 
 /* msg.html */
 .msg{
-  min-height: 1000px;
+  max-height: 1000px;
 }
