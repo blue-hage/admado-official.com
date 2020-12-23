@@ -3,25 +3,27 @@
 {% block head %}clients{% endblock %}
 
 {% block content %}
-<table class="table table-bordered text-light">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">file_id</th>
-      <th scope="col">company_id</th>
-      <th scope="col">user_id</th>
-      <th scope="col">filename</th>
-      <th scope="col">created_at</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for r in client_list %}
+<div class="msg">
+  <table class="table table-bordered text-light">
+    <thead class="thead-light">
       <tr>
-        <th scope="row">{{ r[0] }}</th>
-        {% for i in range(1, 5) %}
-          <td>{{ r[i] }}</td>
-        {% endfor %}
+        <th scope="col">file_id</th>
+        <th scope="col">company_id</th>
+        <th scope="col">user_id</th>
+        <th scope="col">filename</th>
+        <th scope="col">created_at</th>
       </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {% for r in client_list %}
+        <tr>
+          <th scope="row">{{ r[0] }}</th>
+          {% for i in range(1, 5) %}
+            <td>{{ r[i] }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
