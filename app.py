@@ -56,7 +56,7 @@ def contact_try():
   contents = request.form.get("contents")
 
   msg = mail.contact_create(email, name, contents)
-  return redirect("/contact/finished")
+  return redirect("/finished")
 
 
 # client application page
@@ -83,7 +83,7 @@ def client_try():
   attach = client.save_file(filename, design, file_id)
 
   msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
-  return redirect("/client/finished")
+  return redirect("/finished")
 
 
 # policies
@@ -101,13 +101,9 @@ def policy_ad():
 
 
 # message pages
-@app.route("/contact/finished")
+@app.route("/finished")
 def contact_done():
-  return render_template("msg.html", message="お問い合わせ完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
-
-@app.route("/client/finished")
-def client_done():
-  return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
+  return render_template("msg.html", message="受付完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
 
 
 # admin page
@@ -135,11 +131,11 @@ def admin_register():
   if request.args.get("admin_pass", "") != MASTER_PASS: return redirect("/")
   return render_template("admin_register.html")
 
-# @app.route("admin/client/list/register/try", methods=["POST"])
-# def admin_register_try():
-#   ok = admin.new_admin(request.form)
-#   if not ok: return redirect("/admin/client/list/register")
-#   return redirect("admin/client/list/secret")
+@app.route("admin/client/list/register/try", methods=["POST"])
+def admin_register_try():
+  ok = admin.new_admin(request.form)
+  if not ok: return redirect("/admin/client/list/register")
+  return redirect("admin/client/list/secret")
 
 
 if __name__ == "__main__":
