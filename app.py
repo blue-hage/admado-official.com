@@ -103,7 +103,7 @@ def policy_ad():
 # message pages
 @app.route("/finished")
 def contact_done():
-  return render_template("msg.html", message="受付完了。確認メールをご確認ください。", at="/", text="ホームに戻る")
+  return render_template("msg.html", message="受付完了。確認用メールをご確認ください。", at="/", text="ホームに戻る")
 
 
 # admin page
@@ -131,11 +131,11 @@ def admin_register():
   if request.args.get("admin_pass", "") != MASTER_PASS: return redirect("/")
   return render_template("admin_register.html")
 
-@app.route("admin/client/list/register/try", methods=["POST"])
-def admin_register_try():
-  ok = admin.new_admin(request.form)
-  if not ok: return redirect("/admin/client/list/register")
-  return redirect("admin/client/list/secret")
+# @app.route("admin/client/list/register/try", methods=["POST"])
+# def admin_register_try():
+#   ok = admin.new_admin(request.form)
+#   if not ok: return redirect("/admin/client/list/register")
+#   return redirect("admin/client/list/secret")
 
 
 if __name__ == "__main__":
