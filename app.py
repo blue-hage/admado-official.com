@@ -6,9 +6,6 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "fkldsjt42u815dsfv"
-
-HOST = "om1002.coreserver.jp"
-PORT = 465
 MASTER_PASS = "20201219_admado3150"
 
 # home page
@@ -59,14 +56,6 @@ def contact_try():
   contents = request.form.get("contents")
 
   msg = mail.contact_create(email, name, contents)
-  host = HOST
-  port = PORT
-
-  smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME_CONTACT, PASSWORD_CONTACT)
-  smtp.send_message(msg[0])
-  smtp.send_message(msg[1])
-  smtp.quit()
   return redirect("/contact/finished")
 
 
@@ -91,18 +80,9 @@ def client_try():
     filename = "無し"
 
   file_id = str(sql.exec("INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)", company_id, user_id, filename))
-
   attach = client.save_file(filename, design, file_id)
 
   msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
-  host = HOST
-  port = PORT
-
-  smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
-  smtp.send_message(msg[0])
-  smtp.send_message(msg[1])
-  smtp.quit()
   return redirect("/client/finished")
 
 
@@ -155,11 +135,11 @@ def admin_register():
   if request.args.get("admin_pass", "") != MASTER_PASS: return redirect("/")
   return render_template("admin_register.html")
 
-# @app.route("admin/client/list/register/try", methods=["POST"])
-# def admin_register_try():
-#   ok = admin.new_admin(request.form)
-#   if not ok: return redirect("/admin/client/list/register")
-#   return redirect("admin/client/list/secret")
+@app.route("admin/client/list/register/try", methods=["POST"])
+def admin_register_try():
+  ok = admin.new_admin(request.form)
+  if not ok: return redirect("/admin/client/list/register")
+  return redirect("admin/client/list/secret")
 
 
 if __name__ == "__main__":
