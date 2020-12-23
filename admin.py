@@ -1,9 +1,12 @@
 #!/usr/local/bin/python3
-from flask import session, redirect
+from flask import session, redirect, request, render_template, Blueprint
 import sql, hashlib, base64, os
 from functools import wraps
 
+admin = Blueprint("admin", __name__, url_prefix="/admin", template_folder="templates", static_folder="static")
+
 REGI_PASS = "20201223_admado4649"
+MASTER_PASS = "20201219_admado3150"
 
 def is_login():
   return 'login' in session
@@ -37,11 +40,43 @@ def new_admin(form):
   session["login"] = user
   return True
 
+# admin page
+@admin.route("/list")
+def admin_list():
+  if request.args.get("admin_pass", "") !=  MASTER_PASS: return redirect("/")
+  return render_template("admin_login.html")
+
+@admin.route("/list/try", methods=["POST"])
+def admin_login():
+  ok = try_login(request.form)
+  if not ok: return redirect("/list")
+  return redirect("/list/secret")
+
+@admin.route("/list/secret")
+@admin.login_required
+def admin_client():
+  clients = sql.select("SELECT * FROM clients")
+  return render_template("client_list.html", client_list=clients)
+
+
+#admin registration
+@admin.route("/list/register")
+def admin_register():
+  if request.args.get("admin_pass", "") != MASTER_PASS: return redirect("/")
+  return render_template("admin_register.html")
+
+@admin.route("/list/register/try", methods=["POST"])
+def admin_register_try():
+  ok = new_admin(request.form)
+  if not ok: return redirect("/list/register")
+  return redirect("/list/secret")
+
+
 
 def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if not is_login():
-            return redirect('/admin/client/list')
+            return redirect('/list')
         return func(*args, **kwargs)
     return wrapper
