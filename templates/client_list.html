@@ -14,7 +14,8 @@
     </tr>
     {% for r in client_list %}
       <tr>
-        <td>{{ r[0] }}</td>
+        {% for i in range(4) %}
+          <td>{{ r[i] }}</td>
       </tr>
     {% endfor %}
   </table>
