@@ -33,11 +33,3 @@ def select(sql, *args):
   c = db.cursor()
   c.execute(sql, args)
   return c.fetchall()
-
-# if __name__ == "__main__":
-#   a = select("SELECT * FROM test")
-#   print(a[0][0])
-#   print(a[0][1])
-#   print(a[0][2])
-#   print(a[0][3])
-#   print(a[0][4])
