@@ -150,4 +150,4 @@ def admin_client():
   return render_template("client_list.html")
 
 if __name__ == "__main__":
-  app.run(debug=True)
+  app.run()
