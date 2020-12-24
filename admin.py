@@ -76,7 +76,7 @@ if __name__ == "__main__":
   salt = base64.b64encode(os.urandom(32))
   hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
   admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
-  print(hashed_one.hex() + salt)
+  print(str(hashed_one.hex() + salt))
 
   b = sql.select("SELECT * FROM admin WHERE id = %s", admin_id)
   c = b[0][2] + b[0][3]
