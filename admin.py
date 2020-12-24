@@ -37,7 +37,7 @@ def new_admin(form):
   
   salt = base64.b64encode(os.urandom(32))
   hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
-  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
+  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one, salt)
   
   session["login"] = user
   return True
