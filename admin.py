@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
 from flask import session, redirect, request, render_template, Blueprint
 import sql, hashlib, base64, os
-from functools import wraps
 
 admin = Blueprint("admin", __name__, url_prefix="/admin", template_folder="templates", static_folder="static")
 
@@ -70,13 +69,3 @@ def admin_register_try():
   ok = new_admin(request.form)
   if not ok: return redirect("/list/register")
   return redirect("/list/secret")
-
-
-
-# def login_required(func):
-#     @wraps(func)
-#     def wrapper(*args, **kwargs):
-#         if not is_login():
-#             return redirect('/list')
-#         return func(*args, **kwargs)
-#     return wrapper
