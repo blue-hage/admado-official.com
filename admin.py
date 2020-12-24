@@ -12,10 +12,10 @@ def is_login():
 
 def try_login(form):
   user = form.get("user_id")
-  password = form.get("password")
+  password = bytes(form.get("password"), "utf-8")
 
   correct = sql.select("SELECT * FROM admin WHERE user_id = %s", user)
-  # if len(correct) == 0: return False
+  if len(correct) == 0: return False
 
   corr_user = correct[0][1]
   from_data = correct[0][2] + correct[0][3]
