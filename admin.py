@@ -50,12 +50,13 @@ def admin_list():
 @admin.route("/list/try", methods=["POST"])
 def admin_login():
   ok = try_login(request.form)
-  if not ok: return redirect("/list")
+  if not ok: return redirect("/admin/list")
   return redirect("/admin/list/secret")
 
 @admin.route("/list/secret")
 # @login_required
 def admin_client():
+  if not is_login(): redirect("/admin/list")
   clients = sql.select("SELECT * FROM clients")
   return render_template("client_list.html", client_list=clients)
 
@@ -69,7 +70,7 @@ def admin_register():
 @admin.route("/list/register/try", methods=["POST"])
 def admin_register_try():
   ok = new_admin(request.form)
-  if not ok: return redirect("/list/register")
+  if not ok: return redirect("/admin/list/register")
   return redirect("/admin/list/secret")
 
 # if __name__ == "__main__":
