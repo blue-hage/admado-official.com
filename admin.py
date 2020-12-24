@@ -81,4 +81,4 @@ if __name__ == "__main__":
   c = b[0][2] + b[0][3]
   print(b)
   print(c)
-  if c == hashed_one.hex() + salt: print("ok") 
+  if bytes(c, "utf-8") == bytes(hashed_one.hex() + salt, "utf-8"): print("ok") 
