@@ -82,4 +82,4 @@ if __name__ == "__main__":
   from_user = hashed_one + salt
   print(b)
   print(from_data)
-  if from_data.decode("utf-8") == from_user.decode("utf-8"): print("ok") 
+  if from_data == from_user: print("ok") 
