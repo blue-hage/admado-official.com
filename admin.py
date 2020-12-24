@@ -53,7 +53,7 @@ def admin_login():
   return redirect("/list/secret")
 
 @admin.route("/list/secret")
-@admin.login_required
+# @login_required
 def admin_client():
   clients = sql.select("SELECT * FROM clients")
   return render_template("client_list.html", client_list=clients)
@@ -65,18 +65,18 @@ def admin_register():
   if request.args.get("admin_pass", "") != MASTER_PASS: return redirect("/")
   return render_template("admin_register.html")
 
-# @admin.route("/list/register/try", methods=["POST"])
-# def admin_register_try():
-#   ok = new_admin(request.form)
-#   if not ok: return redirect("/list/register")
-#   return redirect("/list/secret")
+@admin.route("/list/register/try", methods=["POST"])
+def admin_register_try():
+  ok = new_admin(request.form)
+  if not ok: return redirect("/list/register")
+  return redirect("/list/secret")
 
 
 
-def login_required(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if not is_login():
-            return redirect('/list')
-        return func(*args, **kwargs)
-    return wrapper
+# def login_required(func):
+#     @wraps(func)
+#     def wrapper(*args, **kwargs):
+#         if not is_login():
+#             return redirect('/list')
+#         return func(*args, **kwargs)
+#     return wrapper
