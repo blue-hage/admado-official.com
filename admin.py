@@ -27,14 +27,14 @@ def try_login(form):
 
 def new_admin(form):
   user = form.get("user_id")
-  password = form.get("password")
+  password = bytes(form.get("password"), "utf-8")
   regi_pass = form.get("regi-password")
 
   if regi_pass != REGI_PASS: return False
   
   salt = base64.b64encode(os.urandom(32))
   hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
-  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, password, salt)
+  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
   
   session["login"] = user
   return True
