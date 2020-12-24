@@ -15,7 +15,7 @@ def try_login(form):
   password = form.get("password")
 
   correct = sql.select("SELECT * FROM admin WHERE user_id = %s", user)
-  if len(correct) == 0: return False
+  # if len(correct) == 0: return False
 
   corr_user = correct[0][1]
   from_data = correct[0][2] + correct[0][3]
