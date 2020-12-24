@@ -69,3 +69,10 @@ def admin_register_try():
   ok = new_admin(request.form)
   if not ok: return redirect("/list/register")
   return redirect("/list/secret")
+
+if __name__ == "__main__":
+  user = "blublu"
+  password = "Mahito011047"
+  salt = base64.b64encode(os.urandom(32))
+  hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
+  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, password, salt)
