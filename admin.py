@@ -51,7 +51,7 @@ def admin_list():
 def admin_login():
   ok = try_login(request.form)
   if not ok: return redirect("/list")
-  return redirect("/list/secret")
+  return redirect("/admin/list/secret")
 
 @admin.route("/list/secret")
 # @login_required
@@ -70,7 +70,7 @@ def admin_register():
 def admin_register_try():
   ok = new_admin(request.form)
   if not ok: return redirect("/list/register")
-  return redirect("/list/secret")
+  return redirect("/admin/list/secret")
 
 # if __name__ == "__main__":
 #   user = "blublu"
