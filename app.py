@@ -1,6 +1,8 @@
 #!/usr/local/bin/python3
 from flask import Flask, render_template, request, redirect
-import smtplib, mail, client, admin, sql
+import smtplib, mail, sql
+from client import client
+from admin import admin
 
 app = Flask(__name__)
 app.secret_key = "fkldsjt42u815dsfv"
