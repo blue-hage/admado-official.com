@@ -16,11 +16,13 @@ def try_login(form):
 
   correct = sql.select("SELECT * FROM admin WHERE user_id = %s", user)
   if len(correct) == 0: return False
+
   corr_user = correct[0][1]
   corr_pass = hashlib.pbkdf2_hmac("sha256", correct[0][2], correct[0][3], 1000)
+  hashed_one = hashlib.pbkdf2_hmac("sha256", password, correct[0][3], 1000)
 
   if user != corr_user: return False
-  if password != corr_pass: return False
+  if hashed_one != corr_pass: return False
 
   session['login'] = user
   return True
@@ -70,17 +72,17 @@ def admin_register_try():
   if not ok: return redirect("/list/register")
   return redirect("/list/secret")
 
-if __name__ == "__main__":
-  user = "blublu"
-  password = b"Mahito011047"
-  salt = base64.b64encode(os.urandom(32))
-  hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
-  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
+# if __name__ == "__main__":
+#   user = "blublu"
+#   password = b"Mahito011047"
+#   salt = base64.b64encode(os.urandom(32))
+#   hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
+#   admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
 
-  b = sql.select("SELECT * FROM admin WHERE id = %s", admin_id)
-  from_data = b[0][2] + b[0][3]
-  from_user = hashed_one.hex() + salt.decode("utf-8")
+#   b = sql.select("SELECT * FROM admin WHERE id = %s", admin_id)
+#   from_data = b[0][2] + b[0][3]
+#   from_user = hashed_one.hex() + salt.decode("utf-8")
 
-  print(from_data)
-  print(from_user)
-  if from_data == from_user: print("ok") 
+#   print(from_data)
+#   print(from_user)
+#   if from_data == from_user: print("ok") 
