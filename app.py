@@ -7,7 +7,7 @@ from admin import admin
 app = Flask(__name__)
 app.secret_key = "fkldsjt42u815dsfv"
 app.register_blueprint(client)
-app.register_blueprint(admin)
+# app.register_blueprint(admin)
 
 # home page
 @app.route("/")
