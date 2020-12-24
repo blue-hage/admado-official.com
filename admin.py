@@ -78,7 +78,8 @@ if __name__ == "__main__":
   admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
 
   b = sql.select("SELECT * FROM admin WHERE id = %s", admin_id)
-  c = b[0][2] + b[0][3]
+  from_data = b[0][2] + b[0][3]
+  from_user = (hashed_one.hex() + salt).decode()
   print(b)
-  print(c)
-  if bytes(c, "utf-8") == bytes(hashed_one.hex() + salt, "utf-8"): print("ok") 
+  print(from_data)
+  if from_data.decode() == from_user: print("ok") 
