@@ -19,7 +19,8 @@ def try_login(form):
 
   corr_user = correct[0][1]
   from_data = correct[0][2] + correct[0][3]
-  hashed_one = hashlib.pbkdf2_hmac("sha256", password, correct[0][3], 1000)
+
+  hashed_one = hashlib.pbkdf2_hmac("sha256", password, bytes(correct[0][3], "utf-8"), 1000)
   from_user = hashed_one.hex() + correct[0][3]
 
   if user != corr_user: return False
@@ -37,7 +38,7 @@ def new_admin(form):
   
   salt = base64.b64encode(os.urandom(32))
   hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
-  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one, salt)
+  admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
   
   session["login"] = user
   return True
