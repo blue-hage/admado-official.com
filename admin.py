@@ -80,7 +80,8 @@ if __name__ == "__main__":
   b = sql.select("SELECT * FROM admin WHERE id = %s", admin_id)
   from_data = b[0][2] + b[0][3]
   from_user = hashed_one + salt
-  
+  from_user = from_user.decode()
+
   print(from_data)
   print(from_user)
   if from_data == from_user: print("ok") 
