@@ -65,11 +65,11 @@ def admin_register():
   if request.args.get("admin_pass", "") != MASTER_PASS: return redirect("/")
   return render_template("admin_register.html")
 
-@admin.route("/list/register/try", methods=["POST"])
-def admin_register_try():
-  ok = new_admin(request.form)
-  if not ok: return redirect("/list/register")
-  return redirect("/list/secret")
+# @admin.route("/list/register/try", methods=["POST"])
+# def admin_register_try():
+#   ok = new_admin(request.form)
+#   if not ok: return redirect("/list/register")
+#   return redirect("/list/secret")
 
 
 
