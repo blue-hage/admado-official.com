@@ -18,11 +18,12 @@ def try_login(form):
   if len(correct) == 0: return False
 
   corr_user = correct[0][1]
-  corr_pass = hashlib.pbkdf2_hmac("sha256", correct[0][2], correct[0][3], 1000)
+  corr_pass = correct[0][2] + correct[0][3]
   hashed_one = hashlib.pbkdf2_hmac("sha256", password, correct[0][3], 1000)
+  from_user = hashed_one.hex() + correct[0][3]
 
   if user != corr_user: return False
-  if hashed_one != corr_pass: return False
+  if from_user != corr_pass: return False
 
   session['login'] = user
   return True
