@@ -11,8 +11,9 @@ def is_login():
   return 'login' in session
 
 def try_login(form):
-  user = form.get("user_id")
-  password = bytes(form.get("password"), "utf-8")
+  user = form.get("user_id", "")
+  password = bytes(form.get("password", ""), "utf-8")
+  if user == "" or password == "": return False
 
   correct = sql.select("SELECT * FROM admin WHERE user_id = %s", user)
   if len(correct) == 0: return False
@@ -30,10 +31,11 @@ def try_login(form):
   return True
 
 def new_admin(form):
-  user = form.get("user_id")
-  password = bytes(form.get("password"), "utf-8")
-  regi_pass = form.get("regi-password")
+  user = form.get("user_id", "")
+  password = bytes(form.get("password", ""), "utf-8")
+  regi_pass = form.get("regi-password", "")
 
+  if user == "" or password == "": return False
   if regi_pass != REGI_PASS: return False
   
   salt = base64.b64encode(os.urandom(32))
