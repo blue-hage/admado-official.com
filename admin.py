@@ -58,7 +58,6 @@ def admin_login():
   return redirect("/admin/list/secret")
 
 @admin.route("/list/secret")
-# @login_required
 def admin_client():
   if not is_login(): redirect("/admin/list")
   clients = sql.select("SELECT * FROM clients")
@@ -76,18 +75,3 @@ def admin_register_try():
   ok = new_admin(request.form)
   if not ok: return redirect("/admin/list/register")
   return redirect("/admin/list/secret")
-
-# if __name__ == "__main__":
-#   user = "blublu"
-#   password = b"Mahito011047"
-#   salt = base64.b64encode(os.urandom(32))
-#   hashed_one = hashlib.pbkdf2_hmac("sha256", password, salt, 1000)
-#   admin_id = sql.exec("INSERT INTO admin (user_id, password, salt) VALUES (%s, %s, %s)", user, hashed_one.hex(), salt)
-
-#   b = sql.select("SELECT * FROM admin WHERE id = %s", admin_id)
-#   from_data = b[0][2] + b[0][3]
-#   from_user = hashed_one.hex() + salt.decode("utf-8")
-
-#   print(from_data)
-#   print(from_user)
-#   if from_data == from_user: print("ok") 
