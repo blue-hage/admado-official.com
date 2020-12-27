@@ -45,5 +45,5 @@ def client_try():
   file_id = str(sql.exec("INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)", company_id, user_id, filename))
   attach = save_file(filename, design, file_id)
 
-  # msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
+  msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
   return redirect("/finished/client")
