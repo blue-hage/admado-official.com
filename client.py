@@ -3,7 +3,7 @@ import os, mail, sql
 from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, redirect
 
-client = Blueprint("client", __name__, url_prefix="/client", template_folder="templates", static_folder="static")
+client = Blueprint("client", __name__, template_folder="templates", static_folder="static")
 
 FILES_DIR = './files'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -21,8 +21,13 @@ def save_file(name, design, file_id):
     return [FILES_DIR + '/' + filename, filename]
   else:
     return [None, "無し"]
+  
+# client application page
+@client.route("/client")
+def client_app_page():
+  return render_template("client.html")
 
-@client.route("/try", methods=["POST"])
+@client.route("/client/try", methods=["POST"])
 def client_try():
   email = request.form.get("email")
   tel = request.form.get("tel")
