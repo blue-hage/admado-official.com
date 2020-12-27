@@ -1,10 +1,10 @@
 {% extends "layout_pages.html" %}
 
-{% block head %}login{% endblock %}
+{% block head %}register{% endblock %}
 
 {% block content %}
 <div class="msg">
-  <form action="/admin/list/try" method="POST" enctype="multipart/form-data">
+  <form action="/admin/list/register/try" method="POST" enctype="multipart/form-data">
       <div class="form-group col-sm-6 mx-auto">
           <label for="user_id">user_id</label>
           <input id="user_id" type="text" name="user_id" class="form-control">
@@ -13,7 +13,11 @@
           <label for="password">password</label>
           <input id="password" type="password" name="password" class="form-control">
       </div>
-      <button type="submit" class="btn btn-outline-light btn-lg">ログイン</button>
+      <div class="form-group col-sm-6 mx-auto">
+          <label for="regi-password">Registration password</label>
+          <input id="regi-password" type="password" name="regi-password" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-outline-light btn-lg">登録</button>
   </form>
 </div>
 {% endblock %}

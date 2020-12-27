@@ -1,15 +1,13 @@
 #!/usr/local/bin/python3
-
-from flask import Flask, render_template, request
-import smtplib, mail, client, sql
-from mail import USER_NAME_CLIENT, USER_NAME_CONTACT, PASSWORD_CLIENT, PASSWORD_CONTACT
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, redirect
+import smtplib, mail
+from client import client
+from admin import admin
 
 app = Flask(__name__)
 app.secret_key = "fkldsjt42u815dsfv"
-
-HOST = "om1002.coreserver.jp"
-PORT = 465
+app.register_blueprint(client)
+app.register_blueprint(admin)
 
 # home page
 @app.route("/")
@@ -59,51 +57,7 @@ def contact_try():
   contents = request.form.get("contents")
 
   msg = mail.contact_create(email, name, contents)
-  host = HOST
-  port = PORT
-
-  smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME_CONTACT, PASSWORD_CONTACT)
-  smtp.send_message(msg[0])
-  smtp.send_message(msg[1])
-  smtp.quit()
-  return messsage("お問い合わせ完了。確認メールをご確認ください。", "/", "ホームに戻る")
-
-
-# client application page
-@app.route("/client")
-def client_app_page():
-  return render_template("client.html")
-
-@app.route("/client/try", methods=["POST"])
-def client_try():
-  email = request.form.get("email")
-  tel = request.form.get("tel")
-  company_id = request.form.get("company_id")
-  user_id = request.form.get("user_id")
-  contents = request.form.get("contents")
-
-  if request.files['design']:
-    design = request.files['design']
-    filename = secure_filename(design.filename)
-  else:
-    design = None
-    filename = "無し"
-
-  file_id = str(sql.exec('INSERT INTO clients (company_id, user_id, filename) VALUES (%s, %s, %s)', company_id, user_id, filename))
-
-  attach = client.save_file(filename, design, file_id)
-
-  msg = mail.client_create(email, tel, company_id, user_id, contents, attach[0], filename, attach[1])
-  host = HOST
-  port = PORT
-
-  smtp = smtplib.SMTP_SSL(host, port)
-  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
-  smtp.send_message(msg[0])
-  smtp.send_message(msg[1])
-  smtp.quit()
-  return messsage("広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", "/", "ホームに戻る")
+  return redirect("/finished/contact")
 
 
 # policies
@@ -119,9 +73,16 @@ def policy_pri():
 def policy_ad():
   return render_template("policy_ad.html")
 
-def messsage(msg, link, text):
-  return render_template("msg.html", message=msg, at=link, text=text)
 
+# message pages
+@app.route("/finished/<page>")
+def message(page):
+  if page == "contact":
+    return render_template("msg.html", message="お問い合わせ完了。確認用メールをご確認ください。", at="/", text="ホームに戻る")
+  elif page == "client":
+    return render_template("msg.html", message="広告掲載の申し込み受付完了。当社からのご連絡をお待ちください。", at="/", text="ホームに戻る")
+  else:
+    return render_template("msg.html", message="エラーが発生しました。", at="/", text="ホームに戻る")
 
 if __name__ == "__main__":
   app.run(debug=True)

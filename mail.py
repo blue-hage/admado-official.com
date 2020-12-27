@@ -3,6 +3,7 @@ from flask import request
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
+import smtplib
 
 USER_NAME_CONTACT = "contact@admado-official.com"
 USER_NAME_CLIENT = "client@admado-official.com"
@@ -10,6 +11,8 @@ PASSWORD_CONTACT = "20201202"
 PASSWORD_CLIENT = "20201203"
 ADMADO_RECIPIENT_CONTACT = "contact-receiver@admado-official.com"
 ADMADO_RECIPIENT_CLIENT = "client-receiver@admado-official.com"
+HOST = "om1002.coreserver.jp"
+PORT = 465
 
 def contact_create(email, name, contents):
   body1 = """
@@ -44,8 +47,15 @@ def contact_create(email, name, contents):
   msg2["From"] = USER_NAME_CONTACT
   msg2["To"] = ADMADO_RECIPIENT_CONTACT
   
-  msg = [msg1, msg2]
-  return msg
+  host = HOST
+  port = PORT
+
+  smtp = smtplib.SMTP_SSL(host, port)
+  smtp.login(USER_NAME_CONTACT, PASSWORD_CONTACT)
+  smtp.send_message(msg1)
+  smtp.send_message(msg2)
+  smtp.quit()
+  return True
 
 
 def client_create(email, tel, company, user, contents, attachment, filename, real):
@@ -96,5 +106,12 @@ def client_create(email, tel, company, user, contents, attachment, filename, rea
     img.add_header('Content-Disposition', "attachment; filename= %s" % filename)
     msg2.attach(img)
   
-  msg = [msg1, msg2]
-  return msg
+  host = HOST
+  port = PORT
+
+  smtp = smtplib.SMTP_SSL(host, port)
+  smtp.login(USER_NAME_CLIENT, PASSWORD_CLIENT)
+  smtp.send_message(msg1)
+  smtp.send_message(msg2)
+  smtp.quit()
+  return True

@@ -5,7 +5,9 @@ config = {
   'host':'localhost',
   'user':'bluroom_client',
   'password':'20201213',
-  'database':'bluroom_client'
+  'database':'bluroom_client', 
+  'use_unicode':True,
+  'charset':'utf8'
 }
 
 def open_db():
