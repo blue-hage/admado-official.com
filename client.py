@@ -29,11 +29,11 @@ def client_app_page():
 
 @client.route("/client/try", methods=["POST"])
 def client_try():
-  email = request.form.get("email")
-  tel = request.form.get("tel")
-  company_id = request.form.get("company_id")
-  user_id = request.form.get("user_id")
-  contents = request.form.get("contents")
+  email = request.form.get("email", "")
+  tel = request.form.get("tel", "")
+  company_id = request.form.get("company_id", "")
+  user_id = request.form.get("user_id", "")
+  contents = request.form.get("contents", "")
 
   if request.files["design"]:
     design = request.files["design"]

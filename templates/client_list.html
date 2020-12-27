@@ -19,8 +19,12 @@
         <tr>
           <th scope="row">{{ r[0] }}</th>
           {% for i in range(1, 5) %}
-            {% if i == 4 and r[i] == "無し": %}
-              <td><a href="/files/{{ r[4] }}"><img width="50" height="50" src="/files/{{ r[4] }}"></a></td>
+            {% if i == 3: %}
+              {% if r[i] == "無し"}
+                <td>{{ r[i] }}</td>
+              {% else: %}
+                <td><a href="/files/{{ r[4] }}"><img width="50" height="50" src="/files/{{ r[4] }}"></a></td>
+              {% endif %}
             {% else: %}
               <td>{{ r[i] }}</td>
             {% endif %}
