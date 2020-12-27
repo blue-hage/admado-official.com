@@ -21,11 +21,6 @@ def save_file(name, design, file_id):
     return [FILES_DIR + '/' + filename, filename]
   else:
     return [None, "無し"]
-  
-# client application page
-@client.route("/")
-def client_app_page():
-  return render_template("client.html")
 
 @client.route("/try", methods=["POST"])
 def client_try():

@@ -59,6 +59,11 @@ def contact_try():
   msg = mail.contact_create(email, name, contents)
   return redirect("/finished/contact")
 
+# client application page
+@client.route("/client")
+def client_app_page():
+  return render_template("client.html")
+
 
 # policies
 @app.route("/policy_user")
